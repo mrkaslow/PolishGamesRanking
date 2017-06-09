@@ -1,0 +1,17 @@
+﻿@model PolishGamesRanking.Models.Game
+
+@{
+    ViewBag.Title = Model.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Name</h2> 
+<h4>Rate:  @Model.Rating</h4>
+<ul>
+    <li>Game genre:  @Model.GameGenre.Name</li>
+    <li>Released:  @Model.ReleaseDate.ToShortDateString()</li>
+    <li>Developer:  @Model.Developer</li>
+    <li>Publisher:  @Model.Publisher</li>
+</ul>
+
+@Html.ActionLink("Edytuj", "Edit", "Games", new {id = Model.Id}, new {@class="btn btn-primary"})

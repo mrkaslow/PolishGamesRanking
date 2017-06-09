@@ -1,0 +1,29 @@
+﻿@model PolishGamesRanking.Models.User
+@{
+    ViewBag.Title = "AddUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Nowy użytkownik</h2>
+
+@using (Html.BeginForm("Save", "User"))
+{
+    <div class="form-group">
+        <label for="FirstName">Imię</label>
+        @Html.TextBoxFor(m=> m.FirstName, new {@class = "form-control"})
+    </div>
+    <div class="form-group">
+        <label for="LastName">Nazwisko</label>
+        @Html.TextBoxFor(m=> m.LastName, new {@class = "form-control"})
+    </div>
+    <div class="form-group">
+        <label for ="Nick">Login/Nick</label>
+        @Html.TextBoxFor(m=> m.Nick, new {@class = "form-control"})
+    </div>
+    <div class="checkbox">
+        <label>
+            @Html.CheckBoxFor(m=>m.IsSubscribedToNewsletter) Czy chcesz otrzymywać informacje na temat nowo dodanych gier?
+        </label>
+    </div>
+}
+

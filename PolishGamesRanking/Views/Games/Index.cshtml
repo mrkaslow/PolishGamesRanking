@@ -1,0 +1,34 @@
+﻿@model IEnumerable<PolishGamesRanking.Models.Game>
+@{
+    ViewBag.Title = "Games";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Games</h2>
+<table class="table table-bordered table-hover">
+    <thead>
+    <tr>
+        <th>Ocena</th>
+        <th>Tytuł</th>
+        <th>Gatunek</th>
+        <th>Data premiery</th>
+        <th>Deweloper</th>
+        <th>Wydawca</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var game in Model)
+    {
+        <tr>
+            <td>@game.Rating</td>
+            <td>@Html.ActionLink(game.Name, "Details", "Games", new {id = game.Id}, null)</td>
+            <td>@game.GameGenre.Name</td>
+            <td>@game.ReleaseDate.ToShortDateString()</td>
+            <td>@game.Developer</td>
+            <td>@game.Publisher</td>
+        </tr>
+    }
+    </tbody>
+</table>
+@Html.ActionLink("Dodaj grę", "New", "Games", null, new {@class="btn btn-primary"})
+
