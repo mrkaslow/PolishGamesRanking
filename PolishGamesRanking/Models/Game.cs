@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Web;
+using Microsoft.Owin.Security.DataHandler.Encoder;
 
 namespace PolishGamesRanking.Models
 {
@@ -27,6 +31,13 @@ namespace PolishGamesRanking.Models
         public string Developer { get; set; }
 
         public string Publisher { get; set; }
+
+        public virtual ICollection<File> Files { get; set; }
+
+        public string Title
+        {
+            get { return Id != 0 ? "Edycja gry" : "Nowa gra"; }
+        }
 
         public float Rating
         {

@@ -88,5 +88,5 @@ C:\Users\rslowinski\Desktop\TI-Projekt\PolishGamesRanking\PolishGamesRanking\obj
 C:\Users\rslowinski\Desktop\TI-Projekt\PolishGamesRanking\PolishGamesRanking\obj\Debug\PolishGamesRanking.Migrations.SetGameTables.resources
 C:\Users\rslowinski\Desktop\TI-Projekt\PolishGamesRanking\PolishGamesRanking\obj\Debug\PolishGamesRanking.Migrations.SetRating.resources
 C:\Users\rslowinski\Desktop\TI-Projekt\PolishGamesRanking\PolishGamesRanking\obj\Debug\PolishGamesRanking.Migrations.GenreRequirementForce.resources
-C:\Users\rslowinski\Desktop\TI-Projekt\PolishGamesRanking\PolishGamesRanking\obj\Debug\PolishGamesRanking.Migrations.GenreRequirement.resources
-C:\Users\rslowinski\Desktop\TI-Projekt\PolishGamesRanking\PolishGamesRanking\obj\Debug\PolishGamesRanking.Migrations.GenreRequirement1.resources
+C:\Users\rslowinski\Desktop\TI-Projekt\PolishGamesRanking\PolishGamesRanking\obj\Debug\PolishGamesRanking.Migrations.addingImage.resources
+C:\Users\rslowinski\Desktop\TI-Projekt\PolishGamesRanking\PolishGamesRanking\obj\Debug\PolishGamesRanking.Migrations.addingImage1.resources

@@ -37,6 +37,7 @@ namespace PolishGamesRanking.Controllers
         public ActionResult Details(int id)
         {
             var game = _context.Games.Include(c => c.GameGenre).SingleOrDefault(c => c.Id == id);
+            game = _context.Games.Include(c => c.Files).SingleOrDefault(c => c.Id == id);
 
             if (game == null)
                 return HttpNotFound();
@@ -50,7 +51,7 @@ namespace PolishGamesRanking.Controllers
             var viewModel = new NewGameViewModel
             {
                 Game = new Game(),
-                GameGenres = gameGenres
+                GameGenres = gameGenres,
             };
             return View("New", viewModel);
         }
@@ -73,16 +74,29 @@ namespace PolishGamesRanking.Controllers
 
         [HttpPost]
 //        [ValidateAntiForgeryToken]
-        public ActionResult Save(Game game)
+        public ActionResult Save(Game game, HttpPostedFileBase image)
         {
             if (!ModelState.IsValid)
             {
                 var viewModel = new NewGameViewModel
                 {
                     Game = game,
-                    GameGenres = _context.GameGenres.ToList()
+                    GameGenres = _context.GameGenres.ToList(),
                 };
                 return View("New", viewModel);
+            }
+            if (image != null && image.ContentLength > 0)
+            {
+                var newImage = new File
+                {
+                    FileName = System.IO.Path.GetFileName(image.FileName),
+                    ContentType = image.ContentType
+                };
+                using (var reader = new System.IO.BinaryReader(image.InputStream))
+                {
+                    newImage.Content = reader.ReadBytes(image.ContentLength);
+                }
+                game.Files = new List<File> { newImage };
             }
 
             if (game.Id == 0)
@@ -90,6 +104,7 @@ namespace PolishGamesRanking.Controllers
                 game.DateAdded = DateTime.Now;
                 _context.Games.Add(game);
             }
+
             else
             {
                 var gameInDb = _context.Games.Single(c => c.Id == game.Id);
@@ -102,5 +117,28 @@ namespace PolishGamesRanking.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index", "Games");
         }
+
+        //public void UploadImage(ImageModel imageModel)
+        //{
+        //    if (imageModel.File.ContentLength > (2 * 1024 * 1024))
+        //    {
+        //        ModelState.AddModelError("CustomError", "Plik musi mieć poniżej 2 MB.");
+        //    }
+        //    if (!(imageModel.File.ContentType == "image/jpeg" || imageModel.File.ContentType == "image/gif"))
+        //    {
+        //        ModelState.AddModelError("CustomError", "Dozwolone formaty plików: jpeg i gif");
+        //    }
+
+        //    imageModel.FileName = imageModel.File.FileName;
+        //    imageModel.ImageSize = imageModel.File.ContentLength;
+
+        //    byte[] data = new byte[imageModel.File.ContentLength];
+        //    imageModel.File.InputStream.Read(data, 0, imageModel.File.ContentLength);
+
+        //    imageModel.ImageData = data;
+
+        //    _context.Images.Add(imageModel);
+        //    _context.SaveChanges();
+        //}
     }
 }

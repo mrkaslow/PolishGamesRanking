@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using Microsoft.Owin.Security.DataHandler.Encoder;
@@ -24,10 +25,12 @@ namespace PolishGamesRanking.ViewModels
         [Required]
         public DateTime? ReleaseDate { get; set; }
 
-        public string Title
-        {
-            get { return Id != 0 ? "Edycja gry" : "Nowa gra"; }
-        }
+        public string Title { get; set; }
+        public int ImageSize { get; set; }
+        public string FileName { get; set; }
+        public byte[] ImageData { get; set; }
+
+        public HttpPostedFileBase File { get; set; }
 
         public NewGameViewModel()
         {
@@ -40,6 +43,7 @@ namespace PolishGamesRanking.ViewModels
             Name = game.Name;
             ReleaseDate = game.ReleaseDate;
             GameGenreId = game.GameGenreId;
+            Title = game.Title;
         }
     }
 }

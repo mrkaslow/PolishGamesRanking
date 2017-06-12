@@ -13,5 +13,14 @@
     <li>Developer:  @Model.Developer</li>
     <li>Publisher:  @Model.Publisher</li>
 </ul>
+if(Model.Files.First().Content.Any()){
+    <dd>
+        @{
+            var base64 = Convert.ToBase64String(Model.Files.First().Content);
+            var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+        }
 
+        <img src="@imgSrc" />
+    </dd>
+}
 @Html.ActionLink("Edytuj", "Edit", "Games", new {id = Model.Id}, new {@class="btn btn-primary"})

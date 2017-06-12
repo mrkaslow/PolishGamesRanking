@@ -1,14 +1,15 @@
-﻿@model PolishGamesRanking.ViewModels.NewGameViewModel
+﻿@using System.Activities.Expressions
+@model PolishGamesRanking.ViewModels.NewGameViewModel
 
 @{
-    ViewBag.Title = Model.Title;
+    ViewBag.Title = Model.Game.Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
-<h2>@Model.Title</h2>
+<h2>@Model.Game.Title</h2>
 
-@using (Html.BeginForm("Save", "Games"))
+@using (Html.BeginForm("Save", "Games", FormMethod.Post, new{enctype="multipart/form-data"}))
 {
     <div class="form-group">
         <label for="Name">Nazwa</label>
@@ -31,6 +32,12 @@
     <div class="form-group">
         <label for="ReleaseDate">Data wydania</label>
         @Html.TextBoxFor(m=> m.Game.ReleaseDate, new {@type="date", @class="form-control"})
+    </div>
+    <div class="form-group">
+        @Html.Label("Obraz", new {@class = "control-label col-md-2"})
+        <div class="col-md-10">
+            <input type="file" id="image" name="image" />
+        </div>
     </div>
     @Html.HiddenFor(m=>m.Id)
 @*    @Html.AntiForgeryToken()*@

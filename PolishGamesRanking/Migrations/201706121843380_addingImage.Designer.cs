@@ -7,13 +7,13 @@ namespace PolishGamesRanking.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class GenreRequirement1 : IMigrationMetadata
+    public sealed partial class addingImage : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(GenreRequirement1));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(addingImage));
         
         string IMigrationMetadata.Id
         {
-            get { return "201706091804510_GenreRequirement1"; }
+            get { return "201706121843380_addingImage"; }
         }
         
         string IMigrationMetadata.Source

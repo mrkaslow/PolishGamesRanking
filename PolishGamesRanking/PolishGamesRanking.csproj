@@ -231,19 +231,20 @@
     <Compile Include="Migrations\201706091754374_GenreRequirement-Force.Designer.cs">
       <DependentUpon>201706091754374_GenreRequirement-Force.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201706091758274_GenreRequirement.cs" />
-    <Compile Include="Migrations\201706091758274_GenreRequirement.Designer.cs">
-      <DependentUpon>201706091758274_GenreRequirement.cs</DependentUpon>
+    <Compile Include="Migrations\201706121843380_addingImage.cs" />
+    <Compile Include="Migrations\201706121843380_addingImage.Designer.cs">
+      <DependentUpon>201706121843380_addingImage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201706091804510_GenreRequirement1.cs" />
-    <Compile Include="Migrations\201706091804510_GenreRequirement1.Designer.cs">
-      <DependentUpon>201706091804510_GenreRequirement1.cs</DependentUpon>
+    <Compile Include="Migrations\201706121934032_addingImage1.cs" />
+    <Compile Include="Migrations\201706121934032_addingImage1.Designer.cs">
+      <DependentUpon>201706121934032_addingImage1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\GameGenre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\File.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -355,11 +356,11 @@
     <EmbeddedResource Include="Migrations\201706091754374_GenreRequirement-Force.resx">
       <DependentUpon>201706091754374_GenreRequirement-Force.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706091758274_GenreRequirement.resx">
-      <DependentUpon>201706091758274_GenreRequirement.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201706121843380_addingImage.resx">
+      <DependentUpon>201706121843380_addingImage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706091804510_GenreRequirement1.resx">
-      <DependentUpon>201706091804510_GenreRequirement1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201706121934032_addingImage1.resx">
+      <DependentUpon>201706121934032_addingImage1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
