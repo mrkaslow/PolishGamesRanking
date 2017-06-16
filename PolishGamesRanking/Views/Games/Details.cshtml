@@ -1,26 +1,34 @@
-﻿@model PolishGamesRanking.Models.Game
+﻿@model PolishGamesRanking.ViewModels.DetailViewModel
 
 @{
-    ViewBag.Title = Model.Name;
+    ViewBag.Title = Model.Game.Name;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Model.Name</h2> 
-<h4>Rate:  @Model.Rating</h4>
-<ul>
-    <li>Game genre:  @Model.GameGenre.Name</li>
-    <li>Released:  @Model.ReleaseDate.ToShortDateString()</li>
-    <li>Developer:  @Model.Developer</li>
-    <li>Publisher:  @Model.Publisher</li>
-</ul>
-if(Model.Files.First().Content.Any()){
-    <dd>
-        @{
-            var base64 = Convert.ToBase64String(Model.Files.First().Content);
-            var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
-        }
-
-        <img src="@imgSrc" />
-    </dd>
+<h2>@Model.Game.Name</h2> 
+<h4>Rate:  @Model.Game.Rating</h4>
+@using (Html.BeginForm("Rate", "Games", new {id = Model.Game.Id}))
+{
+    <div class="form-group">
+        @Html.DropDownListFor(m => m.Game.RatingId, new SelectList(Model.Rates,"RateValue", "RateName"), "Oceń...", new { @class = "form-control" })
+    </div>
+    <button type="submit" class="btn btn-primary">Oceń</button>
 }
-@Html.ActionLink("Edytuj", "Edit", "Games", new {id = Model.Id}, new {@class="btn btn-primary"})
+        <ul>
+            <li>Game genre:  @Model.Game.GameGenre.Name</li>
+            <li>Released:  @Model.Game.ReleaseDate.ToShortDateString()</li>
+            <li>Developer:  @Model.Game.Developer</li>
+            <li>Publisher:  @Model.Game.Publisher</li>
+        </ul>
+        @if (@Model.Game.Files.Any())
+        {
+            <dd>
+                @{
+                    var base64 = Convert.ToBase64String(Model.Game.Files.First().Content);
+                    var imgSrc = $"data:image/gif;base64,{base64}";
+                }
+
+                <img src="@imgSrc" />
+            </dd>
+                    }
+        @Html.ActionLink("Edytuj", "Edit", "Games", new { id = Model.Game.Id }, new { @class = "btn btn-primary" })

@@ -24,6 +24,7 @@ namespace PolishGamesRanking.Models
         public DbSet<Game> Games { get; set; }
         public DbSet<GameGenre> GameGenres { get; set; }
         public DbSet<File> Files { get; set; }
+        public DbSet<Rate> Rates { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

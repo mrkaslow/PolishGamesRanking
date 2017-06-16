@@ -239,6 +239,46 @@
     <Compile Include="Migrations\201706121934032_addingImage1.Designer.cs">
       <DependentUpon>201706121934032_addingImage1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706131433211_requirements.cs" />
+    <Compile Include="Migrations\201706131433211_requirements.Designer.cs">
+      <DependentUpon>201706131433211_requirements.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706131516361_requirements1.cs" />
+    <Compile Include="Migrations\201706131516361_requirements1.Designer.cs">
+      <DependentUpon>201706131516361_requirements1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706161418476_AddRate.cs" />
+    <Compile Include="Migrations\201706161418476_AddRate.Designer.cs">
+      <DependentUpon>201706161418476_AddRate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706161421525_AddRate1.cs" />
+    <Compile Include="Migrations\201706161421525_AddRate1.Designer.cs">
+      <DependentUpon>201706161421525_AddRate1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706161435513_AddRate2.cs" />
+    <Compile Include="Migrations\201706161435513_AddRate2.Designer.cs">
+      <DependentUpon>201706161435513_AddRate2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706161440115_AddRate3.cs" />
+    <Compile Include="Migrations\201706161440115_AddRate3.Designer.cs">
+      <DependentUpon>201706161440115_AddRate3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706161444146_AddRate4.cs" />
+    <Compile Include="Migrations\201706161444146_AddRate4.Designer.cs">
+      <DependentUpon>201706161444146_AddRate4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706161449331_AddRate5.cs" />
+    <Compile Include="Migrations\201706161449331_AddRate5.Designer.cs">
+      <DependentUpon>201706161449331_AddRate5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706161453514_AddRate6.cs" />
+    <Compile Include="Migrations\201706161453514_AddRate6.Designer.cs">
+      <DependentUpon>201706161453514_AddRate6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706161457150_AddRate7.cs" />
+    <Compile Include="Migrations\201706161457150_AddRate7.Designer.cs">
+      <DependentUpon>201706161457150_AddRate7.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Game.cs" />
@@ -246,9 +286,11 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\File.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Rate.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\DetailViewModel.cs" />
     <Compile Include="ViewModels\NewGameViewModel.cs" />
     <Compile Include="ViewModels\RandomGameViewModel.cs" />
   </ItemGroup>
@@ -361,6 +403,36 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706121934032_addingImage1.resx">
       <DependentUpon>201706121934032_addingImage1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706131433211_requirements.resx">
+      <DependentUpon>201706131433211_requirements.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706131516361_requirements1.resx">
+      <DependentUpon>201706131516361_requirements1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706161418476_AddRate.resx">
+      <DependentUpon>201706161418476_AddRate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706161421525_AddRate1.resx">
+      <DependentUpon>201706161421525_AddRate1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706161435513_AddRate2.resx">
+      <DependentUpon>201706161435513_AddRate2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706161440115_AddRate3.resx">
+      <DependentUpon>201706161440115_AddRate3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706161444146_AddRate4.resx">
+      <DependentUpon>201706161444146_AddRate4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706161449331_AddRate5.resx">
+      <DependentUpon>201706161449331_AddRate5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706161453514_AddRate6.resx">
+      <DependentUpon>201706161453514_AddRate6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706161457150_AddRate7.resx">
+      <DependentUpon>201706161457150_AddRate7.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

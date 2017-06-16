@@ -19,6 +19,5 @@ namespace PolishGamesRanking.Models
 
         public byte[] Content { get; set; }
         public int GameId { get; set; }
-        public virtual Game Game { get; set; }
     }
 }

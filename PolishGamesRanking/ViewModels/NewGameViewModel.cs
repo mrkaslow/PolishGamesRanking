@@ -13,7 +13,6 @@ namespace PolishGamesRanking.ViewModels
     {
         public IEnumerable<GameGenre> GameGenres { get; set; }
         public int? Id { get; set; }
-        public Game Game { get; set; }
 
         [Required]
         [StringLength(255)]
@@ -25,12 +24,26 @@ namespace PolishGamesRanking.ViewModels
         [Required]
         public DateTime? ReleaseDate { get; set; }
 
-        public string Title { get; set; }
-        public int ImageSize { get; set; }
-        public string FileName { get; set; }
-        public byte[] ImageData { get; set; }
+        public DateTime DateAdded { get; set; }
 
-        public HttpPostedFileBase File { get; set; }
+        public string Developer { get; set; }
+
+        public string Publisher { get; set; }
+
+        public float Rating { get; set; }
+
+        public int RatingsCount { get; set; }
+
+        public int AllRates { get; set; }
+
+        public int RatingId { get; set; }
+
+        public string Title
+        {
+            get { return Id != 0 ? "Edycja gry" : "Nowa gra"; }
+        }
+
+        public ICollection<File> Files { get; set; }
 
         public NewGameViewModel()
         {
@@ -43,7 +56,13 @@ namespace PolishGamesRanking.ViewModels
             Name = game.Name;
             ReleaseDate = game.ReleaseDate;
             GameGenreId = game.GameGenreId;
-            Title = game.Title;
+            Files = game.Files;
+            Developer = game.Developer;
+            Publisher = game.Publisher;
+            DateAdded = game.DateAdded;
+            Rating = game.Rating;
+            AllRates = game.AllRates;
+            RatingsCount = game.RatingsCount;
         }
     }
 }

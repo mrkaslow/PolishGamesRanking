@@ -2,45 +2,47 @@
 @model PolishGamesRanking.ViewModels.NewGameViewModel
 
 @{
-    ViewBag.Title = Model.Game.Title;
+    ViewBag.Title = Model.Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
-<h2>@Model.Game.Title</h2>
+<h2>@Model.Title</h2>
 
-@using (Html.BeginForm("Save", "Games", FormMethod.Post, new{enctype="multipart/form-data"}))
+@using (Html.BeginForm("Save", "Games", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div class="form-group">
         <label for="Name">Nazwa</label>
-        @Html.TextBoxFor(m => m.Game.Name, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m=>m.Game.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Name)
     </div>
     <div class="form-group">
         <label for="GameGenre">Gatunek</label>
-        @Html.DropDownListFor(m => m.Game.GameGenreId, new SelectList(Model.GameGenres, "Id", "Name"), "Wybierz gatunek", new { @class = "form-control" })
-        @Html.ValidationMessageFor(m=> m.Game.GameGenreId)
+        @Html.DropDownListFor(m => m.GameGenreId, new SelectList(Model.GameGenres, "Id", "Name"), "Wybierz gatunek", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.GameGenreId)
     </div>
     <div class="form-group">
         <label for="Developer">Deweloper</label>
-        @Html.TextBoxFor(m => m.Game.Developer, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.Developer, new { @class = "form-control" })
     </div>
     <div class="form-group">
         <label for="Publisher">Wydawca</label>
-        @Html.TextBoxFor(m => m.Game.Publisher, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.Publisher, new { @class = "form-control" })
     </div>
     <div class="form-group">
         <label for="ReleaseDate">Data wydania</label>
-        @Html.TextBoxFor(m=> m.Game.ReleaseDate, new {@type="date", @class="form-control"})
+        @Html.TextBoxFor(m => m.ReleaseDate, new { @type = "date", @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.ReleaseDate)
     </div>
     <div class="form-group">
-        @Html.Label("Obraz", new {@class = "control-label col-md-2"})
-        <div class="col-md-10">
-            <input type="file" id="image" name="image" />
-        </div>
+        <label for="Files">Okładka</label>
+        <br/>
+        <input type="file" id="image" name="image" multiple="">
+        @Html.ValidationMessageFor(m => m.Files)
     </div>
-    @Html.HiddenFor(m=>m.Id)
-@*    @Html.AntiForgeryToken()*@
+    @Html.HiddenFor(m => m.Id)
+    @Html.AntiForgeryToken()
+    <br/>
     <button type="submit" class="btn btn-primary">Dodaj</button>
 }
 

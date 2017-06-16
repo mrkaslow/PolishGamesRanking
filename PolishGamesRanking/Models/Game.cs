@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using Microsoft.Owin.Security.DataHandler.Encoder;
 
 namespace PolishGamesRanking.Models
@@ -21,9 +22,10 @@ namespace PolishGamesRanking.Models
         public GameGenre GameGenre { get; set; }
 
         [Display(Name = "Gatunek")]
-        [Required]
+        [Required(ErrorMessage = "Wybierz gatunek.")]
         public byte? GameGenreId { get; set; }
 
+        [Required(ErrorMessage = "Podaj datę premiery.")]
         public DateTime ReleaseDate { get; set; }
 
         public DateTime DateAdded { get; set; }
@@ -33,11 +35,6 @@ namespace PolishGamesRanking.Models
         public string Publisher { get; set; }
 
         public virtual ICollection<File> Files { get; set; }
-
-        public string Title
-        {
-            get { return Id != 0 ? "Edycja gry" : "Nowa gra"; }
-        }
 
         public float Rating
         {
@@ -55,5 +52,10 @@ namespace PolishGamesRanking.Models
         public int RatingsCount { get; set; }
 
         public int AllRates { get; set; }
+
+        public Rate RateType { get; set; }
+
+        [Display(Name = "Ocena")]
+        public byte RatingId { get; set; }
     }
 }

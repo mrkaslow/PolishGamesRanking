@@ -90,3 +90,13 @@ C:\Users\rslowinski\Desktop\TI-Projekt\PolishGamesRanking\PolishGamesRanking\obj
 C:\Users\rslowinski\Desktop\TI-Projekt\PolishGamesRanking\PolishGamesRanking\obj\Debug\PolishGamesRanking.Migrations.GenreRequirementForce.resources
 C:\Users\rslowinski\Desktop\TI-Projekt\PolishGamesRanking\PolishGamesRanking\obj\Debug\PolishGamesRanking.Migrations.addingImage.resources
 C:\Users\rslowinski\Desktop\TI-Projekt\PolishGamesRanking\PolishGamesRanking\obj\Debug\PolishGamesRanking.Migrations.addingImage1.resources
+C:\Users\rslowinski\Desktop\TI-Projekt\PolishGamesRanking\PolishGamesRanking\obj\Debug\PolishGamesRanking.Migrations.requirements.resources
+C:\Users\rslowinski\Desktop\TI-Projekt\PolishGamesRanking\PolishGamesRanking\obj\Debug\PolishGamesRanking.Migrations.requirements1.resources
+C:\Users\rslowinski\Desktop\TI-Projekt\PolishGamesRanking\PolishGamesRanking\obj\Debug\PolishGamesRanking.Migrations.AddRate.resources
+C:\Users\rslowinski\Desktop\TI-Projekt\PolishGamesRanking\PolishGamesRanking\obj\Debug\PolishGamesRanking.Migrations.AddRate1.resources
+C:\Users\rslowinski\Desktop\TI-Projekt\PolishGamesRanking\PolishGamesRanking\obj\Debug\PolishGamesRanking.Migrations.AddRate2.resources
+C:\Users\rslowinski\Desktop\TI-Projekt\PolishGamesRanking\PolishGamesRanking\obj\Debug\PolishGamesRanking.Migrations.AddRate3.resources
+C:\Users\rslowinski\Desktop\TI-Projekt\PolishGamesRanking\PolishGamesRanking\obj\Debug\PolishGamesRanking.Migrations.AddRate4.resources
+C:\Users\rslowinski\Desktop\TI-Projekt\PolishGamesRanking\PolishGamesRanking\obj\Debug\PolishGamesRanking.Migrations.AddRate5.resources
+C:\Users\rslowinski\Desktop\TI-Projekt\PolishGamesRanking\PolishGamesRanking\obj\Debug\PolishGamesRanking.Migrations.AddRate6.resources
+C:\Users\rslowinski\Desktop\TI-Projekt\PolishGamesRanking\PolishGamesRanking\obj\Debug\PolishGamesRanking.Migrations.AddRate7.resources
