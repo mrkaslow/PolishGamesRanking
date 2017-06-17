@@ -10,7 +10,7 @@
 @using (Html.BeginForm("Rate", "Games", new {id = Model.Game.Id}))
 {
     <div class="form-group">
-        @Html.DropDownListFor(m => m.Game.RatingId, new SelectList(Model.Rates,"RateValue", "RateName"), "Oceń...", new { @class = "form-control" })
+        @Html.DropDownListFor(m => m.Game.RatingId, (IEnumerable<SelectListItem>) ViewBag.Styles, "--oceń--", new { @class = "form-control" })
     </div>
     <button type="submit" class="btn btn-primary">Oceń</button>
 }

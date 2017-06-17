@@ -38,15 +38,22 @@ namespace PolishGamesRanking.Controllers
         public ActionResult Details(int id)
         {
             var game = _context.Games.Include(c => c.GameGenre).SingleOrDefault(c => c.Id == id);
-            var rates = _context.Rates.ToList();
-            var viewModel = new DetailViewModel
+
+            var styles = RateList.Select(m => new SelectListItem
             {
-                Rates = rates,
-                Game = game
-            };
+                Value = m.RateValue.ToString(),
+                Text = m.RateName,
+                Selected = game.RatingId.Equals(m.Id.ToString())
+            });
+            ViewBag.Styles = styles;
 
             if (game == null)
                 return HttpNotFound();
+
+            var viewModel = new DetailViewModel
+            {
+                Game = game
+            };
 
             return View(viewModel);
         }
@@ -137,11 +144,10 @@ namespace PolishGamesRanking.Controllers
 
 
         [HttpPost]
-        public ActionResult Rate(int id)
+        public ActionResult Rate(Game game, int id)
         {
             var gameInDb = _context.Games.Single(c => c.Id == id);
-            var rate = _context.Rates.SingleOrDefault(c => c.Id == gameInDb.RatingId);
-            gameInDb.AllRates += rate.RateValue;
+            gameInDb.AllRates += RateList.Find(x => x.Id == game.RatingId).RateValue;
             gameInDb.RatingsCount++;
 
             _context.SaveChanges();
@@ -149,8 +155,67 @@ namespace PolishGamesRanking.Controllers
             return RedirectToAction("Index", "Games");
         }
 
-        private List<Rate> Rates= new List<Rate>{
-
+        private List<Rate> RateList= new List<Rate>{
+            new Rate
+            {
+                Id = 1,
+                RateName = "Nieporozumienie(1)",
+                RateValue = 1
+            },
+            new Rate
+            {
+                Id = 2,
+                RateName = "Bardzo zła(2)",
+                RateValue = 2
+            },
+            new Rate
+            {
+                Id = 3,
+                RateName = "Słaba(3)",
+                RateValue = 3
+            },
+            new Rate
+            {
+                Id = 4,
+                RateName = "Ujdzie(4)",
+                RateValue = 4
+            },
+            new Rate
+            {
+                Id = 5,
+                RateName = "Średnia(5)",
+                RateValue = 5
+            },
+            new Rate
+            {
+                Id = 6,
+                RateName = "Niezła(6)",
+                RateValue = 6
+            },
+            new Rate
+            {
+                Id = 7,
+                RateName = "Dobra(7)",
+                RateValue = 7
+            },
+            new Rate
+            {
+                Id = 8,
+                RateName = "Bardzo dobra(8)",
+                RateValue = 8
+            },
+            new Rate
+            {
+                Id = 9,
+                RateName = "Rewelacyjna(9)",
+                RateValue = 9
+            },
+            new Rate
+            {
+                Id = 10,
+                RateName = "Arcydzieło!(10)",
+                RateValue = 10
+            }
         };
     }
 }
