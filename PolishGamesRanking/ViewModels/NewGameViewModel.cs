@@ -14,14 +14,14 @@ namespace PolishGamesRanking.ViewModels
         public IEnumerable<GameGenre> GameGenres { get; set; }
         public int? Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Podaj nazwę gry")]
         [StringLength(255)]
         public string Name { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Wybierz gatunek")]
         public byte? GameGenreId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Podaj datę wydania")]
         public DateTime? ReleaseDate { get; set; }
 
         public DateTime DateAdded { get; set; }

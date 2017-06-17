@@ -12,6 +12,7 @@
     <div class="form-group">
         @Html.DropDownListFor(m => m.Game.RatingId, (IEnumerable<SelectListItem>) ViewBag.Styles, "--oceń--", new { @class = "form-control" })
     </div>
+    @Html.AntiForgeryToken()
     <button type="submit" class="btn btn-primary">Oceń</button>
 }
         <ul>

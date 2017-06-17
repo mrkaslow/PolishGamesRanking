@@ -144,6 +144,7 @@ namespace PolishGamesRanking.Controllers
 
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Rate(Game game, int id)
         {
             var gameInDb = _context.Games.Single(c => c.Id == id);

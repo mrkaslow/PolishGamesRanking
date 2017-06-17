@@ -4,8 +4,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Games</h2>
-<table class="table table-bordered table-hover">
+<h2>Gry</h2>
+<table id="games" class="table table-bordered table-hover">
     <thead>
     <tr>
         <th>Ocena</th>
@@ -14,6 +14,7 @@
         <th>Data premiery</th>
         <th>Deweloper</th>
         <th>Wydawca</th>
+        <th>Usuń</th>
     </tr>
     </thead>
     <tbody>
@@ -26,9 +27,60 @@
             <td>@game.ReleaseDate.ToShortDateString()</td>
             <td>@game.Developer</td>
             <td>@game.Publisher</td>
+            <td>
+                <button data-game-id="@game.Id" class="btn-link js-delete">Usuń</button>
+            </td>
         </tr>
     }
     </tbody>
 </table>
 @Html.ActionLink("Dodaj grę", "New", "Games", null, new {@class="btn btn-primary"})
 
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#games").DataTable({
+                "order": [[ 0, "desc" ]],
+                "language": {
+                    "decimal": "",
+                    "emptyTable": "Brak danych w tabeli",
+                    "info": "Gry od _START_ do _END_,  wszystkich gier: _TOTAL_",
+                    "infoEmpty": "Gry 0 do 0 z 0 wpisów",
+                    "infoFiltered": "(filtered from _MAX_ total entries)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": "Pokaż _MENU_ gier",
+                    "loadingRecords": "Wczytywanie...",
+                    "processing": "Processing...",
+                    "search": "Szukaj:",
+                    "zeroRecords": "Brak pasujących wpisów",
+                    "paginate": {
+                        "first": "Pierwsza",
+                        "last": "Ostatnia",
+                        "next": "Następna",
+                        "previous": "Poprzednia"
+                    },
+                }
+            });
+
+            $("#games").on("click",
+                ".js-delete",
+                function() {
+                    var button = $(this);
+                    bootbox.confirm("Czy napewno chcesz usunąć ten tytuł?",
+                        function(result) {
+                            if (result) {
+                                $.ajax({
+                                    url: "api/games/" + button.attr("data-game-id"),
+                                    method: "DELETE",
+                                    success: function() {
+                                        button.parents("tr").remove();
+                                    }
+                                });
+                            }
+                        });
+                });
+        })
+    </script>
+}
