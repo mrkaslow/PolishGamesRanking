@@ -32,7 +32,9 @@ namespace PolishGamesRanking.Controllers
 
             var orderedGames = games.OrderByDescending(c => c.Rating);
 
-            return View(orderedGames);
+            if (User.IsInRole(RoleName.CanDeleteAndEditGames))
+                return View("Index", orderedGames);
+                return View("NonAdminIndex", orderedGames);
         }
 
         public ActionResult Details(int id)
@@ -68,6 +70,7 @@ namespace PolishGamesRanking.Controllers
             return View("New", viewModel);
         }
 
+        [Authorize(Roles = RoleName.CanDeleteAndEditGames)]
         public ActionResult Edit(int id)
         {
             var game =  _context.Games.SingleOrDefault(c => c.Id == id);

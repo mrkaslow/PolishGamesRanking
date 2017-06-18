@@ -50,6 +50,7 @@ namespace PolishGamesRanking.Controllers.API
         }
 
         [HttpPut]
+        [Authorize(Roles = RoleName.CanDeleteAndEditGames)]
         public IHttpActionResult UpdateGame(int id, GameDto gameDto)
         {
             if (!ModelState.IsValid)
@@ -67,6 +68,7 @@ namespace PolishGamesRanking.Controllers.API
         }
 
         [HttpDelete]
+        [Authorize(Roles = RoleName.CanDeleteAndEditGames)]
         public IHttpActionResult DeleteGame(int id)
         {
             var gameInDb = _context.Games.SingleOrDefault(c => c.Id == id);

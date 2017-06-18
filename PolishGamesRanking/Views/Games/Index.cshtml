@@ -21,7 +21,21 @@
     @foreach (var game in Model)
     {
         <tr>
-            <td>@game.Rating</td>
+            <td align="center">
+                @if (@game.Files.Any())
+                {
+                    <dd>
+                        @{
+                            var base64 = Convert.ToBase64String(game.Files.First().Content);
+                            var imgSrc = $"data:image/gif;base64,{base64}";
+                        }
+
+                        <img src="@imgSrc" width="70" class="img-responsive" />
+                    </dd><br/>
+                }@{
+                     var ratingString = game.Rating.ToString("0.00");
+                 }@ratingString
+            </td>
             <td>@Html.ActionLink(game.Name, "Details", "Games", new {id = game.Id}, null)</td>
             <td>@game.GameGenre.Name</td>
             <td>@game.ReleaseDate.ToShortDateString()</td>
@@ -40,7 +54,40 @@
 {
     <script>
         $(document).ready(function() {
-            $("#games").DataTable({
+            var table = $("#games").DataTable({
+                //ajax: {
+                //    url: "api/games",
+                //    dataSrc: ""
+                //},
+                //columns: [
+                //    {
+                //        data: "rating"
+                //    },
+                //    {
+                //        data: "name",
+                //        render: function(data, type, game) {
+                //            return "<a href='/games/details/" + game.id + "'>" + game.name + "</a>";
+                //        }
+                //    },
+                //    {
+                //        data: "name"
+                //    },
+                //    {
+                //        data: "releasedate"
+                //    },
+                //    {
+                //        data: "developer"
+                //    },
+                //    {
+                //        data: "publisher"
+                //    },
+                //    {
+                //        data: "id",
+                //        render: function(data) {
+                //            return "<button class='btn-link js-delete' data-game-id=" + data + ">Usuń</button>";
+                //        }
+                //    }
+                //],
                 "order": [[ 0, "desc" ]],
                 "language": {
                     "decimal": "",
@@ -74,8 +121,8 @@
                                 $.ajax({
                                     url: "api/games/" + button.attr("data-game-id"),
                                     method: "DELETE",
-                                    success: function() {
-                                        button.parents("tr").remove();
+                                    success: function () {
+                                        table.row(button.parents("tr")).remove().draw();
                                     }
                                 });
                             }

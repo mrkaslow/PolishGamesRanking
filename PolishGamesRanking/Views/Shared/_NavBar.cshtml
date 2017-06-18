@@ -6,15 +6,16 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            @Html.ActionLink("P.G.R.", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <a class="navbar-left" href="/"><img src="~/Content/unnamed.png" class="img-responsive" alt="P G R" width="120"></a>
+            @*@Html.ActionLink("P.G.R.", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li>@Html.ActionLink("Gry", "Index", "Games")</li>
-                <li>@Html.ActionLink("Użytkownicy", "Index", "User")</li>
+                
+                <li style="font-family: 'Sketch 3D'; font-size: 28px;">@Html.ActionLink("Gry", "Index", "Games")</li>
+                <li style="font-family: 'Sketch 3D'; font-size: 28px;">@Html.ActionLink("Users", "Index", "User")</li>
             </ul>
             @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
-

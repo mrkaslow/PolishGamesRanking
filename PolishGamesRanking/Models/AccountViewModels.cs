@@ -65,6 +65,12 @@ namespace PolishGamesRanking.Models
     public class RegisterViewModel
     {
         [Required]
+        public string Nick { get; set; }
+        public bool WantNewsletter { get; set; }
+        [Required]
+        public int Age { get; set; }
+         
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }

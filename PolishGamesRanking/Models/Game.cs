@@ -44,7 +44,7 @@ namespace PolishGamesRanking.Models
                 {
                     return 0;
                 }
-                return AllRates / RatingsCount;
+                return (float)AllRates / (float)RatingsCount;
             }
             set { }
         }

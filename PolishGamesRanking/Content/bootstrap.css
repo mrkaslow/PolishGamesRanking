@@ -136,7 +136,11 @@ sub {
 }
 
 img {
-  border: 0;
+    border: 0;
+    max-width: 64px;
+    max-height: 64px;
+    width: auto;
+    height: auto;
 }
 
 svg:not(:root) {
@@ -4028,6 +4032,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
   min-height: 50px;
   margin-bottom: 20px;
   border: 1px solid transparent;
+    text-align: -moz-center;
 }
 
 .navbar:before,
@@ -4198,6 +4203,14 @@ textarea.input-group-sm > .input-group-btn > .btn {
   line-height: 20px;
 }
 
+.brand-name {
+    font-family: 'Josefin Slab', serif;
+    font-size: 47px;
+    font-weight: bold;
+    color: #444;
+    text-decoration: none;
+}
+
 .navbar-brand:hover,
 .navbar-brand:focus {
   text-decoration: none;
@@ -4245,7 +4258,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .navbar-nav > li > a {
   padding-top: 10px;
   padding-bottom: 10px;
-  line-height: 20px;
+  line-height: 50px;
 }
 
 @media (max-width: 767px) {

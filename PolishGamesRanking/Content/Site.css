@@ -7,6 +7,7 @@
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    padding-top: 50px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -29,4 +30,11 @@ textarea {
 
 .input-validation-error {
     border: 2px solid red;
+}
+.imagelist{
+    float:left;
+}
+.imgContainer{
+    float:left;
+    width: 10%;
 }

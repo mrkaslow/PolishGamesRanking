@@ -6,7 +6,9 @@
 }
 
 <h2>@Model.Game.Name</h2> 
-<h4>Rate:  @Model.Game.Rating</h4>
+<h4>Rate: @{
+    var ratingString = Model.Game.Rating.ToString("0.00");
+          }@ratingString</h4>
 @using (Html.BeginForm("Rate", "Games", new {id = Model.Game.Id}))
 {
     <div class="form-group">
@@ -29,7 +31,7 @@
                     var imgSrc = $"data:image/gif;base64,{base64}";
                 }
 
-                <img src="@imgSrc" />
+                <img src="@imgSrc" width="200" class="img-responsive"/>
             </dd>
-                    }
+        }
         @Html.ActionLink("Edytuj", "Edit", "Games", new { id = Model.Game.Id }, new { @class = "btn btn-primary" })
