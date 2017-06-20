@@ -8,6 +8,10 @@ namespace PolishGamesRanking.Models
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
+        public string Nick { get; set; }
+        public int Age { get; set; }
+        public bool WantNewsletter { get; set; }
     }
 
     public class ExternalLoginListViewModel
@@ -54,11 +58,10 @@ namespace PolishGamesRanking.Models
         public string Email { get; set; }
 
         [Required]
-        [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "Zapamiętaj mnie?")]
         public bool RememberMe { get; set; }
     }
 
