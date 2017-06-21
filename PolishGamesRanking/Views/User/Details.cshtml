@@ -1,9 +1,29 @@
-﻿@model PolishGamesRanking.Models.User
+﻿@model PolishGamesRanking.Models.ApplicationUser
 
 @{
-    ViewBag.Title = Model.Nick;
+    ViewBag.Title = @Model.Nick + " - moje konto";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="container">
+    <div class="row">
+        <div class="col align-self-start">
+            <h2 class="text-success">@Model.UserName</h2> <br />
 
-<h2>@Model.FirstName @Model.LastName</h2>
+            <ul>
+                <li class="list-group-item">Nick: @Model.Nick</li>
+                <li class="list-group-item">Wiek: @Model.Age</li>
+                <li class="list-group-item">e-mail: @Model.Email</li>
+                <li class="list-group-item">Newsletter:@(Model.WantNewsletter ? " Tak" : " Nie")</li>
+                <li class="list-group-item">Dodane gry: @Model.GamesAdded</li>
+                <li class="list-group-item">Ocenione gry: @Model.GamesRatedCount</li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            @Html.ActionLink("Edytuj", "Edit", "User", new { id = Model.Id }, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+</div>
+
 

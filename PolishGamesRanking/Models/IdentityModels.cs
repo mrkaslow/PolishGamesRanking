@@ -1,6 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
+using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -16,6 +19,9 @@ namespace PolishGamesRanking.Models
         public string Nick { get; set; }
         [Required]
         public int Age { get; set; }
+
+        public int GamesAdded { get; set; }
+        public int GamesRatedCount { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
@@ -33,6 +39,7 @@ namespace PolishGamesRanking.Models
         public DbSet<GameGenre> GameGenres { get; set; }
         public DbSet<File> Files { get; set; }
         public DbSet<Rate> Rates { get; set; }
+        public DbSet<RatedGame> RatedGames { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

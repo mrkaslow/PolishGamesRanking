@@ -11,5 +11,6 @@ namespace PolishGamesRanking.ViewModels
     {
         public IEnumerable<Rate> Rates { get; set; }
         public Game Game { get; set; }
+        public int UsersRate { get; set; }
     }
 }

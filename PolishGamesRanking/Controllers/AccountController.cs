@@ -157,7 +157,9 @@ namespace PolishGamesRanking.Controllers
                     UserName = model.Email, Email = model.Email,
                     WantNewsletter = model.WantNewsletter,
                     Nick = model.Nick,
-                    Age = model.Age
+                    Age = model.Age,
+                    GamesAdded = model.GamesAdded,
+                    GamesRatedCount = model.GamesRatedCount
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -388,7 +390,9 @@ namespace PolishGamesRanking.Controllers
                     Email = model.Email,
                     Nick = model.Nick,
                     Age = model.Age,
-                    WantNewsletter = model.WantNewsletter
+                    WantNewsletter = model.WantNewsletter,
+                    GamesAdded = model.GamesAdded,
+                    GamesRatedCount = model.GamesRatedCount 
                 };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)

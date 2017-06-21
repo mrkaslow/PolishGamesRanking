@@ -1,29 +1,30 @@
-﻿@model PolishGamesRanking.Models.User
+﻿@model PolishGamesRanking.ViewModels.EditUserViewModel
+
 @{
-    ViewBag.Title = "AddUser";
+    ViewBag.Title = "EditUser";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Nowy użytkownik</h2>
+<h2>Edytuj dane</h2>
 
-@using (Html.BeginForm("Save", "User"))
+@using (Html.BeginForm("Save", "User", new { @class = "form-horizontal" }))
 {
     <div class="form-group">
-        <label for="FirstName">Imię</label>
-        @Html.TextBoxFor(m=> m.FirstName, new {@class = "form-control"})
+        <label for="Age">Wiek</label>
+        @Html.TextBoxFor(m=> m.Age, new {@class = "form-control"})
     </div>
     <div class="form-group">
-        <label for="LastName">Nazwisko</label>
-        @Html.TextBoxFor(m=> m.LastName, new {@class = "form-control"})
-    </div>
-    <div class="form-group">
-        <label for ="Nick">Login/Nick</label>
+        <label for="nick">Nick</label>
         @Html.TextBoxFor(m=> m.Nick, new {@class = "form-control"})
     </div>
     <div class="checkbox">
         <label>
-            @Html.CheckBoxFor(m=>m.IsSubscribedToNewsletter) Czy chcesz otrzymywać informacje na temat nowo dodanych gier?
+            @Html.CheckBoxFor(m=>m.WantNewsletter) Czy chcesz otrzymywać informacje na temat nowo dodanych gier?
         </label>
     </div>
+    @Html.HiddenFor(m => m.Id)
+    @Html.AntiForgeryToken()
+    <br/>
+    <button type="submit" class="btn btn-primary">Zapisz</button>
 }
 

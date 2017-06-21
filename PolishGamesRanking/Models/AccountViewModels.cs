@@ -12,6 +12,8 @@ namespace PolishGamesRanking.Models
         public string Nick { get; set; }
         public int Age { get; set; }
         public bool WantNewsletter { get; set; }
+        public int GamesAdded { get; set; }
+        public int GamesRatedCount { get; set; }
     }
 
     public class ExternalLoginListViewModel
@@ -88,6 +90,9 @@ namespace PolishGamesRanking.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        public int GamesAdded { get; set; }
+        public int GamesRatedCount { get; set; }
     }
 
     public class ResetPasswordViewModel

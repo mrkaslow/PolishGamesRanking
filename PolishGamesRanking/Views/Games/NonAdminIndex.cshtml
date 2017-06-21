@@ -1,4 +1,7 @@
-﻿@model IEnumerable<PolishGamesRanking.Models.Game>
+﻿@using Microsoft.AspNet.Identity
+@using Microsoft.AspNet.Identity.EntityFramework
+@using PolishGamesRanking.Models
+@model IEnumerable<PolishGamesRanking.Models.Game>
 @{
     ViewBag.Title = "Games";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -9,17 +12,24 @@
     <thead>
     <tr>
         <th>Ocena</th>
+        <th>Okładka</th>
         <th>Tytuł</th>
         <th>Gatunek</th>
         <th>Data premiery</th>
         <th>Deweloper</th>
         <th>Wydawca</th>
+        <th>Moja ocena</th>
     </tr>
     </thead>
     <tbody>
     @foreach (var game in Model)
     {
         <tr>
+            <td>
+                @{
+                    var ratingString = game.Rating.ToString("0.00");
+                }@ratingString
+            </td>
             <td align="center">
                 @if (@game.Files.Any())
                 {
@@ -29,15 +39,41 @@
                             var imgSrc = $"data:image/gif;base64,{base64}";
                         }
 
-                        <img src="@imgSrc" width="70" class="img-responsive" />
+                        <img src="@imgSrc" width="70" class="img-responsive"/>
                     </dd><br/>
-                }@game.Rating
+                }
             </td>
             <td>@Html.ActionLink(game.Name, "Details", "Games", new {id = game.Id}, null)</td>
             <td>@game.GameGenre.Name</td>
             <td>@game.ReleaseDate.ToShortDateString()</td>
             <td>@game.Developer</td>
             <td>@game.Publisher</td>
+            @{
+                var store = new UserStore<ApplicationUser>(new ApplicationDbContext());
+                var userManager = new UserManager<ApplicationUser>(store);
+                ApplicationUser user = userManager.FindByIdAsync(User.Identity.GetUserId()).Result;
+                var _context = new ApplicationDbContext();
+                var ratedGames = _context.RatedGames;
+                int userRate = 0;
+                foreach (var ratedGame in ratedGames)
+                {
+                    if (ratedGame.ApplicationUserId == user.Id)
+                    {
+                        if (ratedGame.GameId == game.Id)
+                        {
+                            userRate = ratedGame.UsersRate;
+                        }
+                    }
+                }
+            }
+            @if (userRate > 0)
+            {
+                <td align="center">@userRate</td>
+            }
+            else
+            {
+                <td align="center">-</td>
+            }
         </tr>
     }
     </tbody>
@@ -47,7 +83,31 @@
 @section scripts
 {
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+            $(function(){
+                var msg = "@(TempData["Msg"] as string)";
+                if (msg !== "") {
+                    toastr.success(msg);
+                }
+            });
+
             var table = $("#games").DataTable({
                 //ajax: {
                 //    url: "api/games",

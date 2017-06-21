@@ -1,4 +1,7 @@
-﻿@model IEnumerable<PolishGamesRanking.Models.User>
+﻿@using Microsoft.AspNet.Identity
+@using Microsoft.AspNet.Identity.EntityFramework
+@using PolishGamesRanking.Models
+@model List<ApplicationUser>
 @{
     ViewBag.Title = "Users";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -11,13 +14,16 @@
 }
 else
 {
-    <table class="table table-bordered table-hover">
+    <table id="users" class="table table-bordered table-hover">
         <thead>
             <tr>
                 <th>Użytkownicy</th>
+                <th>e-mail</th>
                 <th>Nick</th>
+                <th>Wiek</th>
+                <th>Newsletter</th>
                 <th>Dodane gry</th>
-                <th>Ocenione gdy</th>
+                <th>Ocenione gry</th>
             </tr>
         </thead>
         <tbody>
@@ -25,13 +31,48 @@ else
         @foreach (var user in Model)
         {
             <tr>
-                <td>@Html.ActionLink(user.FirstName + user.LastName, "Edit", "User", new {id = user.Id}, null)</td>
+                <td>@Html.ActionLink(user.UserName, "Details", "User", new { id = user.Id}, null)</td>
+                <td>@user.Email</td>
                 <td>@user.Nick</td>
+                <td>@user.Age</td>
+                <td>@user.WantNewsletter</td>
                 <td>@user.GamesAdded</td>
-                <td>@user.GamesRated</td>
+                <td>@user.GamesRatedCount</td>
             </tr>
         }
         </tbody>
     </table>
 }
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            var table = $("#users").DataTable({
+                "order": [[ 0, "desc" ]],
+                "language": {
+                    "decimal": "",
+                    "emptyTable": "Brak danych w tabeli",
+                    "info": "Użytkownicy od _START_ do _END_,  wszystkich użytkowników: _TOTAL_",
+                    "infoEmpty": "Użytkownicy 0 do 0 z 0 userów",
+                    "infoFiltered": "(filtered from _MAX_ total entries)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": "Pokaż _MENU_ użytkowników",
+                    "loadingRecords": "Wczytywanie...",
+                    "processing": "Processing...",
+                    "search": "Szukaj:",
+                    "zeroRecords": "Brak pasujących wpisów",
+                    "paginate": {
+                        "first": "Pierwsza",
+                        "last": "Ostatnia",
+                        "next": "Następna",
+                        "previous": "Poprzednia"
+                    },
+                }
+            });
+        })
+    </script>
+}
+
 

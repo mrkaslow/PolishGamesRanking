@@ -6,7 +6,10 @@ using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
 using System.Drawing.Printing;
+using System.Threading.Tasks;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using PolishGamesRanking.Models;
 using PolishGamesRanking.ViewModels;
 
@@ -15,10 +18,16 @@ namespace PolishGamesRanking.Controllers
     public class GamesController : Controller
     {
         private ApplicationDbContext _context;
+        private UserStore<ApplicationUser> store;
+        private UserManager<ApplicationUser> userManager;
+        private List<ApplicationUser> users;
 
         public GamesController()
         {
             _context = new ApplicationDbContext();
+            store = new UserStore<ApplicationUser>(new ApplicationDbContext());
+            userManager = new UserManager<ApplicationUser>(store);
+            users = userManager.Users.ToList();
         }
 
         protected override void Dispose(bool disposing)
@@ -54,10 +63,36 @@ namespace PolishGamesRanking.Controllers
 
             var viewModel = new DetailViewModel
             {
-                Game = game
+                Game = game,
             };
 
-            return View(viewModel);
+            var userId = User.Identity.GetUserId();
+            var userInDb = userManager.Users.Single(c => c.Id == userId);
+
+            var rate = false;
+            int userRate = 0;
+            foreach (var rates in _context.RatedGames)
+            {
+                if (rates.ApplicationUserId == userId)
+                {
+                    if (rates.GameId == game.Id)
+                    {
+                        rate = true;
+                        userRate = rates.UsersRate;
+                    }
+                }
+            }
+            if (rate)
+            {
+                viewModel = new DetailViewModel
+                {
+                    Game = game,
+                    UsersRate = userRate
+                };
+
+                return View("DetailsNoRating", viewModel);
+            }
+            return View("Details", viewModel);
         }
 
         public ActionResult New()
@@ -89,7 +124,7 @@ namespace PolishGamesRanking.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Save(Game game, HttpPostedFileBase image)
+        public async Task<ActionResult> Save(Game game, HttpPostedFileBase image)
         {
             if (!ModelState.IsValid || image == null)
             {
@@ -130,6 +165,12 @@ namespace PolishGamesRanking.Controllers
             {
                 game.DateAdded = DateTime.Now;
                 _context.Games.Add(game);
+                var user = users.Find(c => c.Id == User.Identity.GetUserId());
+                user.GamesAdded++;
+
+                await userManager.UpdateAsync(user);
+                var ctx = store.Context;
+                ctx.SaveChanges();
             } else
             {
                 var gameInDb = _context.Games.Single(c => c.Id == game.Id);
@@ -142,20 +183,53 @@ namespace PolishGamesRanking.Controllers
                 gameInDb.Files = game.Files;
             }
             _context.SaveChanges();
+            TempData["Msg"] = "Gra została dodana do bazy.";
             return RedirectToAction("Index", "Games");
         }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Rate(Game game, int id)
+        public async Task<ActionResult> Rate(Game game, int id, ApplicationUser user)
         {
+            
             var gameInDb = _context.Games.Single(c => c.Id == id);
-            gameInDb.AllRates += RateList.Find(x => x.Id == game.RatingId).RateValue;
-            gameInDb.RatingsCount++;
+            var userId = User.Identity.GetUserId();
+            var userInDb = userManager.Users.Single(c => c.Id == userId);
 
-            _context.SaveChanges();
+            
+            
 
+            var rate = false;
+            foreach (var rates in _context.RatedGames)
+            {
+                if (rates.ApplicationUserId == userId)
+                {
+                    if (rates.GameId == game.Id)
+                    {
+                        rate = true;
+                    }
+                }
+            }
+
+            if (!rate)
+            {
+                var rateValue = RateList.Find(x => x.Id == game.RatingId).RateValue;
+                gameInDb.AllRates += rateValue;
+                gameInDb.RatingsCount++;
+       
+                var ratedGame = new RatedGame();
+                ratedGame.GameId = gameInDb.Id;
+                ratedGame.UsersRate = rateValue;
+                ratedGame.ApplicationUserId = userId;
+                _context.RatedGames.Add(ratedGame);
+                userInDb.GamesRatedCount++;
+
+                await userManager.UpdateAsync(userInDb);
+                var ctx = store.Context;
+                ctx.SaveChanges();
+                _context.SaveChanges();
+            }
             return RedirectToAction("Index", "Games");
         }
 
