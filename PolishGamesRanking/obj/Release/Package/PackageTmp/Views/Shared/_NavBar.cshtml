@@ -1,0 +1,39 @@
+﻿@using Microsoft.AspNet.Identity
+@using Microsoft.AspNet.Identity.EntityFramework
+@using PolishGamesRanking.Models
+    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-left" href="/"><img src="~/Content/unnamed.png" class="img-responsive" alt="P G R" width="120"></a>
+            @*@Html.ActionLink("P.G.R.", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                
+                <li style="font-family: 'Sketch 3D'; font-size: 28px;">@Html.ActionLink("Baza gier", "Index", "Games")</li>
+                @{
+                    var store = new UserStore<ApplicationUser>(new ApplicationDbContext());
+                    var userManager = new UserManager<ApplicationUser>(store);
+                    ApplicationUser user = userManager.FindByIdAsync(User.Identity.GetUserId()).Result;
+                }
+                @if (user != null)
+                {
+                    if (user.Roles.Any())
+                    {
+                        <li style="font-family: 'Sketch 3D'; font-size: 28px;">@Html.ActionLink("Users", "Index", "User")</li>
+                    }
+                    else
+                    {
+                        <li style="font-family: 'Sketch 3D'; font-size: 28px;">@Html.ActionLink("Moje konto", "Details", "User", new { id = user.Id }, null)</li>
+                    }
+                }
+            </ul>
+            @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>

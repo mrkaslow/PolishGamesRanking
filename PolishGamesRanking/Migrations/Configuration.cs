@@ -5,14 +5,14 @@ namespace PolishGamesRanking.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<PolishGamesRanking.Models.ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<PolishGamesRanking.Model1>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(PolishGamesRanking.Models.ApplicationDbContext context)
+        protected override void Seed(PolishGamesRanking.Model1 context)
         {
             //  This method will be called after migrating to the latest version.
 

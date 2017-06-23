@@ -1,0 +1,74 @@
+﻿@using System.Activities.Expressions
+@model PolishGamesRanking.ViewModels.NewGameViewModel
+
+@{
+    ViewBag.Title = Model.Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-danger">
+    <div class="panel-heading">
+        <h3 class="panel-title">Zasady dodawania tytułów</h3>
+    </div>
+    <div class="panel-body">
+        <p class="text-danger">Przy dodawaniu tytułu obowiązują następujące zasady:</p>
+        <ol>
+            <li class="text-warning">Nazwy tytułów piszemy po Polsku (jeżeli istnieje oficjalne tłumaczenie) i z wielkiej litery.</li>
+            <li class="text-warning">Nie zawsze da się zakwalifikować grę do danego gatunku, jeżeli jest z tym problem wybieramy gatunek, którego cechy są najbardziej obecne w danym tytule.</li>
+            <li class="text-warning">Jeżeli znany jest tylko rok premiery, wybieramy 1 stycznia tego roku, jeżeli ma już określony miesiąc ale jeszcze niesprecyzowany dzień, wybieramy pierwszy dzień tego miesiąca.</li>
+            <li class="text-warning">Jako obrazek dodajemy oficjalną okładkę gry (najlepiej z chwili premiery tytułu)</li>
+            <li class="text-warning">Obrazek powinien być pionowy (wymiary np. 200x285)</li>
+        </ol>
+    </div>
+</div>
+
+<h2>@Model.Title</h2>
+    @using (Html.BeginForm("Save", "Games", new { @class = "form-horizontal" }, FormMethod.Post, new { enctype = "multipart/form-data"}))
+    {
+        <div class="form-group">
+            <label for="Name">Nazwa</label>
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Name)
+        </div>
+        <div class="form-group">
+            <label for="GameGenre">Gatunek</label>
+            @Html.DropDownListFor(m => m.GameGenreId, new SelectList(Model.GameGenres, "Id", "Name"), "Wybierz gatunek", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.GameGenreId)
+        </div>
+        <div class="form-group">
+            <label for="Developer">Deweloper</label>
+            @Html.TextBoxFor(m => m.Developer, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label for="Publisher">Wydawca</label>
+            @Html.TextBoxFor(m => m.Publisher, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label for="ReleaseDate">Data wydania</label>
+            @Html.TextBoxFor(m => m.ReleaseDate, new { @type = "date", @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.ReleaseDate)
+        </div>
+        <div class="form-group">
+            <label for="Files">Okładka</label>
+            <br />
+            <input type="file" id="image" name="image" multiple="">
+            @Html.ValidationMessageFor(m => m.Files)
+        </div>
+        @Html.HiddenFor(m => m.Id)
+        @Html.AntiForgeryToken()
+        <br />
+        <button type="submit" class="btn btn-primary" id='addGame'>Dodaj</button>
+    }
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function() {
+            $("#addGame").submit(function() {
+                $.click(function() {
+                        toastr.success("Rentals successfully recorded.");
+                    });
+            });
+        });
+    </script>
+}

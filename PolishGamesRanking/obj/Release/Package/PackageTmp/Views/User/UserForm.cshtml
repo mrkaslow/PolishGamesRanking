@@ -1,0 +1,30 @@
+﻿@model PolishGamesRanking.ViewModels.EditUserViewModel
+
+@{
+    ViewBag.Title = "EditUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edytuj dane</h2>
+
+@using (Html.BeginForm("Save", "User", new { @class = "form-horizontal" }))
+{
+    <div class="form-group">
+        <label for="Age">Wiek</label>
+        @Html.TextBoxFor(m=> m.Age, new {@class = "form-control"})
+    </div>
+    <div class="form-group">
+        <label for="nick">Nick</label>
+        @Html.TextBoxFor(m=> m.Nick, new {@class = "form-control"})
+    </div>
+    <div class="checkbox">
+        <label>
+            @Html.CheckBoxFor(m=>m.WantNewsletter) Czy chcesz otrzymywać informacje na temat nowo dodanych gier?
+        </label>
+    </div>
+    @Html.HiddenFor(m => m.Id)
+    @Html.AntiForgeryToken()
+    <br/>
+    <button type="submit" class="btn btn-primary">Zapisz</button>
+}
+

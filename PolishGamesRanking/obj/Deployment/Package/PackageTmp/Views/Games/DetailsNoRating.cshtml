@@ -1,0 +1,52 @@
+﻿@using Microsoft.AspNet.Identity
+@using Microsoft.AspNet.Identity.EntityFramework
+@using PolishGamesRanking.Models
+@model PolishGamesRanking.ViewModels.DetailViewModel
+
+@{
+    ViewBag.Title = Model.Game.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    var store = new UserStore<ApplicationUser>(new ApplicationDbContext());
+    var userManager = new UserManager<ApplicationUser>(store);
+    ApplicationUser user = userManager.FindByIdAsync(User.Identity.GetUserId()).Result;
+}
+
+<h2>@Model.Game.Name</h2>
+<h4 class="text-success">
+    Ocena: @{
+        var ratingString = Model.Game.Rating.ToString("0.00");
+    }@ratingString
+</h4>
+<h5 class="text-danger">Moja ocena: @Model.UsersRate</h5>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2">
+            @if (@Model.Game.Files.Any())
+            {
+                <dd>
+                    @{
+                        var base64 = Convert.ToBase64String(Model.Game.Files.First().Content);
+                        var imgSrc = $"data:image/gif;base64,{base64}";
+                    }
+
+                    <img src="@imgSrc" width="200" class="img-responsive" />
+                </dd>
+            }
+        </div>
+        <div class="col-sm-6">
+            <ul>
+                <li class="list-group-item">Gatunek:  @Model.Game.GameGenre.Name</li>
+                <li class="list-group-item">Data wydania:  @Model.Game.ReleaseDate.ToShortDateString()</li>
+                <li class="list-group-item">Deweloper:  @Model.Game.Developer</li>
+                <li class="list-group-item">Wydawca:  @Model.Game.Publisher</li>
+            </ul>
+        </div>
+
+    </div>
+    <div class="row">
+        <br/>
+        @Html.ActionLink("Edytuj", "Edit", "Games", new { id = Model.Game.Id }, new { @class = "btn btn-primary" })
+    </div>
+</div>

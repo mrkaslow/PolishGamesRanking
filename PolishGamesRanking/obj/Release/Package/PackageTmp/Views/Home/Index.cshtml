@@ -1,0 +1,80 @@
+﻿@using System.Security.Cryptography.X509Certificates
+@using Microsoft.Ajax.Utilities
+@using PolishGamesRanking.Migrations
+@model IEnumerable<PolishGamesRanking.Models.Game>
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <link rel="stylesheet" type="text/css" href="~/Content/frontFont.css" />
+</head>
+<div>
+    <svg viewBox="0 0 800 400">
+        <symbol id="s-text">
+
+            <text text-anchor="middle"
+                  x="50%"
+                  y="50%"
+                  class="text--line2">
+                PGR
+            </text>
+            <text text-anchor="middle"
+                  x="50%"
+                  y="70%"
+                  class="text--line">
+                Polish Game Ranking
+            </text>
+        </symbol>
+
+        <g class="g-ants">
+            <use xlink:href="#s-text"
+                 class="text-copy"></use>
+            <use xlink:href="#s-text"
+                 class="text-copy"></use>
+            <use xlink:href="#s-text"
+                 class="text-copy"></use>
+            <use xlink:href="#s-text"
+                 class="text-copy"></use>
+            <use xlink:href="#s-text"
+                 class="text-copy"></use>
+        </g>
+    </svg>
+</div>
+<h2 style="color:#00bc8c; font-family: 'Sketch 3D'; font-size: 40px;" align="center">Top gry</h2><hr/>
+<table id="games" class="table">
+<thead>
+<tr>
+</tr>
+</thead>
+<tbody>
+@if (true)
+{
+    var list = Model.ToList();
+    int count = 0;
+    <tr>
+        @foreach (var game in list)
+        {
+            if (game.Files.Any())
+            {
+                count++;
+
+
+                <td align="center">
+                    @{
+                        var base64 = Convert.ToBase64String(game.Files.First().Content);
+                        var imgSrc = $"data:image/gif;base64,{base64}";
+                    }
+                    <img src="@imgSrc" width="100" class="img-responsive"/>
+                    <p style="font-family: 'Sketch 3D'; font-size: 30px; color:crimson">.@count</p>
+                </td>
+
+                if (count > 10)
+                {
+                    break;
+                }
+            }
+        }
+    </tr>
+}
+</table>
