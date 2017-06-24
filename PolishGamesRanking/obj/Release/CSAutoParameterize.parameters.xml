@@ -1,12 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
-  <parameter name="Model1-Web.config Connection String" description="Model1 Connection String used in web.config by the application to access the database." defaultValue="Data Source=(LocalDb)\MSSQLLocalDB;initial catalog=aspnet-PolishGamesRanking-20170604122819;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="C:\\Users\\rslowinski\\Desktop\\TI-Projekt\\PolishGamesRanking\\PolishGamesRanking\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Model1']/@connectionString" />
-  </parameter>
   <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." defaultValue="Data Source=mssql01.dcsweb.pl,51433;Initial Catalog=1368_PolishGameRanking;Persist Security Info=True;User ID=1368_pgrankin;MultipleActiveResultSets=False;Connect Timeout=30;User Instance=False; Password=159587Km!" tags="SqlConnectionString">
     <parameterEntry kind="XmlFile" scope="C:\\Users\\rslowinski\\Desktop\\TI-Projekt\\PolishGamesRanking\\PolishGamesRanking\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
   </parameter>
-  <parameter name="Model1_DatabasePublish-Web.config Connection String" description="Model1_DatabasePublish Connection String used in web.config by the application to access the database." defaultValue="Model1_DatabasePublish.ConnetionString" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="C:\\Users\\rslowinski\\Desktop\\TI-Projekt\\PolishGamesRanking\\PolishGamesRanking\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Model1_DatabasePublish']/@connectionString" />
+  <parameter name="DefaultConnection_DatabasePublish-Web.config Connection String" description="DefaultConnection_DatabasePublish Connection String used in web.config by the application to access the database." defaultValue="DefaultConnection_DatabasePublish.ConnetionString" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\rslowinski\\Desktop\\TI-Projekt\\PolishGamesRanking\\PolishGamesRanking\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection_DatabasePublish']/@connectionString" />
   </parameter>
 </parameters>

@@ -3,10 +3,7 @@
   <parameter name="IIS Web Application Name" description="" value="pgrankin.pl" tags="IisApp">
     <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\rslowinski\\Desktop\\TI-Projekt\\PolishGamesRanking\\PolishGamesRanking\\obj\\Release\\Package\\PackageTmp$" />
   </parameter>
-  <parameter name="DefaultConnection-Web.config Connection String" description="" value="Data Source=(LocalDb)\MSSQLLocalDB;initial catalog=aspnet-PolishGamesRanking-20170604122819;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework" tags="">
+  <parameter name="DefaultConnection-Web.config Connection String" description="" value="Data Source=mssql01.dcsweb.pl,51433;Initial Catalog=1368_PolishGameRanking;Persist Security Info=True;User ID=1368_pgrankin;Password=159587Km!;MultipleActiveResultSets=False;Connect Timeout=30;User Instance=False" tags="">
     <parameterEntry kind="XmlFile" scope="C:\\Users\\rslowinski\\Desktop\\TI-Projekt\\PolishGamesRanking\\PolishGamesRanking\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
-  </parameter>
-  <parameter name="Model1-Web.config Connection String" description="" value="Data Source=(LocalDb)\MSSQLLocalDB;initial catalog=aspnet-PolishGamesRanking-20170604122819;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework" tags="">
-    <parameterEntry kind="XmlFile" scope="C:\\Users\\rslowinski\\Desktop\\TI-Projekt\\PolishGamesRanking\\PolishGamesRanking\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Model1']/@connectionString" />
   </parameter>
 </parameters>
