@@ -28,26 +28,49 @@
                     <img src="@imgSrc" width="200" class="img-responsive" />
                 </dd>
             }
+            <br/>
+            @Html.ActionLink("Edytuj", "Edit", "Games", new { id = Model.Game.Id }, new { @class = "btn btn-primary" })
         </div>
         <div class="col-sm-6">
-            <ul>
-                <li class="list-group-item">Gatunek:  @Model.Game.GameGenre.Name</li>
-                <li class="list-group-item">Data wydania:  @Model.Game.ReleaseDate.ToShortDateString()</li>
-                <li class="list-group-item">Deweloper:  @Model.Game.Developer</li>
-                <li class="list-group-item">Wydawca:  @Model.Game.Publisher</li>
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#info" data-toggle="tab">Informacje ogólne</a></li>
+                
+                @if (Model.Game.Description.IsEmpty())
+                {
+                    <li class="disabled"><a>Opis</a></li>
+                }
+                else
+                {
+                    <li><a href="#opis" data-toggle="tab">Opis</a></li>
+                }
             </ul>
+            <div id="myTabContent" class="tab-content">
+                <div class="tab-pane fade active in" id="info" >
+                    <li class="list-group-item">Gatunek: @Model.Game.GameGenre.Name</li>
+                    <li class="list-group-item">Data wydania: @Model.Game.ReleaseDate.ToShortDateString()</li>
+                    <li class="list-group-item">Deweloper: @Model.Game.Developer</li>
+                    <li class="list-group-item">Wydawca: @Model.Game.Publisher</li>
+                    <li class="list-group-item">Silnik gry: @Model.Game.Engine</li>
+                    <br/>
+                </div>
+                <div class="tab-pane fade" id="opis">
+                    <div class="panel panel-default">
+                        <div class="panel-body" style="min-height: 210px">
+                           <p align="justify">@Model.Game.Description<p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-            @using (Html.BeginForm("Rate", "Games", new { id = Model.Game.Id }))
+            @using (Html.BeginForm("Rate", "Games", new {id = Model.Game.Id}))
             {
-                <div class="form-group" style="margin-left: 40px">
-                    @Html.DropDownListFor(m => m.Game.RatingId, (IEnumerable<SelectListItem>)ViewBag.Styles, "--oceń--", new { @class = "form-control" })
+                <div class="form-group">
+                    @Html.DropDownListFor(m => m.Game.RatingId, (IEnumerable<SelectListItem>) ViewBag.Styles, "--oceń--", new {@class = "form-control"})
                 </div>
                 @Html.AntiForgeryToken()
-                <button type="submit" class="btn btn-primary" style="margin-left: 40px">Oceń</button>
+                <button type="submit" class="btn btn-danger">Oceń</button>
             }
         </div>
     </div>
-    <div class="row">
-        @Html.ActionLink("Edytuj", "Edit", "Games", new {id = Model.Game.Id}, new {@class = "btn btn-primary"})
-        </div>
+
 </div>

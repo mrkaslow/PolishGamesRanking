@@ -90,3 +90,4 @@ C:\Users\rslowinski\Desktop\TI-Projekt\PolishGamesRanking\PolishGamesRanking\bin
 C:\Users\rslowinski\Desktop\TI-Projekt\PolishGamesRanking\PolishGamesRanking\bin\AutoMapper.xml
 C:\Users\rslowinski\Desktop\TI-Projekt\PolishGamesRanking\PolishGamesRanking\obj\Debug\PolishGamesRanking.Migrations.Initial.resources
 C:\Users\rslowinski\Desktop\TI-Projekt\PolishGamesRanking\PolishGamesRanking\obj\Debug\PolishGamesRanking.csproj.GenerateResource.Cache
+C:\Users\rslowinski\Desktop\TI-Projekt\PolishGamesRanking\PolishGamesRanking\obj\Debug\PolishGamesRanking.Migrations.Description.resources

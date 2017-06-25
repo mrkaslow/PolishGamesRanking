@@ -1,4 +1,7 @@
-﻿@model PolishGamesRanking.Models.ApplicationUser
+﻿@using Microsoft.AspNet.Identity
+@using Microsoft.AspNet.Identity.EntityFramework
+@using PolishGamesRanking.Models
+@model PolishGamesRanking.Models.ApplicationUser
 
 @{
     ViewBag.Title = @Model.Nick + " - moje konto";
@@ -6,24 +9,82 @@
 }
 <div class="container">
     <div class="row">
-        <div class="col align-self-start">
-            <h2 class="text-success">@Model.UserName</h2> <br />
+        <div class="col-sm-10">
+            <h2 style="color:#00bc8c; font-family: 'Sketch 3D'; font-size: 40px;">@Model.UserName</h2> <br />
 
             <ul>
                 <li class="list-group-item">Nick: @Model.Nick</li>
                 <li class="list-group-item">Wiek: @Model.Age</li>
                 <li class="list-group-item">e-mail: @Model.Email</li>
                 <li class="list-group-item">Newsletter:@(Model.WantNewsletter ? " Tak" : " Nie")</li>
-                <li class="list-group-item">Dodane gry: @Model.GamesAdded</li>
-                <li class="list-group-item">Ocenione gry: @Model.GamesRatedCount</li>
+                <li class="list-group-item">Dodane gry:  <font color="#a52a2a">@Model.GamesAdded</font> </li>
+                <li class="list-group-item">Ocenione gry:  <font color="#a52a2a">@Model.GamesRatedCount</font></li>
             </ul>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-6">
+        <br/>
+        <div class="col-md-10" align="center">
             @Html.ActionLink("Edytuj", "Edit", "User", new { id = Model.Id }, new { @class = "btn btn-primary" })
         </div>
     </div>
 </div>
+<br/>
+<h4 style="color:#a52a2a; font-family: 'Sketch 3D'; font-size: 40px;" align="center">Twoje oceny</h4>
+<hr/>
+<br/>
+<table id="games" class="table table-bordered table-hover">
+    <thead>
+    <tr>
+        <th>Ocena</th>
+        <th>Moja ocena</th>
+        <th>Tytuł</th>
+        <th>Data premiery</th>
+        <th>Deweloper</th>
+        <th>Wydawca</th>
+    </tr>
+    </thead>
+    <tbody>
+    @{
+        var _context = new ApplicationDbContext();
+        var cont = new ApplicationDbContext();
+        var games = cont.Games;
+        var store = new UserStore<ApplicationUser>(new ApplicationDbContext());
+        var userManager = new UserManager<ApplicationUser>(store);
+        ApplicationUser user = userManager.FindByIdAsync(Model.Id).Result;
+        var ratedGames = _context.RatedGames;
+
+        foreach (var game in games)
+        {
+
+            int userRate = 0;
+            foreach (var ratedGame in ratedGames)
+            {
+                if (ratedGame.ApplicationUserId == user.Id)
+                {
+                    if (ratedGame.GameId == game.Id)
+                    {
+                        userRate = ratedGame.UsersRate;
+                    }
+                }
+            }
+
+            if (userRate > 0)
+            {
+                <tr>
+                    <td>
+                        @{
+                            var ratingString = game.Rating.ToString("0.00");
+                        }@ratingString
+                    </td>
+                    <td class="text-danger">@userRate</td>
+                    <td>@Html.ActionLink(game.Name, "Details", "Games", new {id = game.Id}, null)</td>
+                    <td>@game.ReleaseDate.ToShortDateString()</td>
+                    <td>@game.Developer</td>
+                    <td>@game.Publisher</td>
+                </tr>
+            }
+        }
+    }
+    </tbody>
+</table>
 
 

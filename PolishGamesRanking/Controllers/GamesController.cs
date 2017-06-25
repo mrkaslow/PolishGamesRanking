@@ -187,7 +187,6 @@ namespace PolishGamesRanking.Controllers
             return RedirectToAction("Index", "Games");
         }
 
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Rate(Game game, int id, ApplicationUser user)

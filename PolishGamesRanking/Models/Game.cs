@@ -34,6 +34,12 @@ namespace PolishGamesRanking.Models
 
         public string Publisher { get; set; }
 
+        public string Description { get; set; }
+
+        public bool DLC { get; set; }
+
+        public string Engine { get; set; }  
+
         public virtual ICollection<File> Files { get; set; }
 
         public float Rating

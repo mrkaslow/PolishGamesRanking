@@ -30,6 +30,12 @@ namespace PolishGamesRanking.ViewModels
 
         public string Publisher { get; set; }
 
+        public string Description { get; set; }
+
+        public bool DLC { get; set; }
+
+        public string Engine { get; set; }
+
         public float Rating { get; set; }
 
         public int RatingsCount { get; set; }
@@ -63,6 +69,9 @@ namespace PolishGamesRanking.ViewModels
             Rating = game.Rating;
             AllRates = game.AllRates;
             RatingsCount = game.RatingsCount;
+            Engine = game.Engine;
+            Description = game.Description;
+            DLC = game.DLC;
         }
     }
 }

@@ -90,3 +90,4 @@ C:\Users\rslowinski\Desktop\TI-Projekt\PolishGamesRanking\PolishGamesRanking\obj
 C:\Users\rslowinski\Desktop\TI-Projekt\PolishGamesRanking\PolishGamesRanking\obj\Release\PolishGamesRanking.dll
 C:\Users\rslowinski\Desktop\TI-Projekt\PolishGamesRanking\PolishGamesRanking\obj\Release\PolishGamesRanking.pdb
 C:\Users\rslowinski\Desktop\TI-Projekt\PolishGamesRanking\PolishGamesRanking\obj\Release\PolishGamesRanking.Migrations.Initial.resources
+C:\Users\rslowinski\Desktop\TI-Projekt\PolishGamesRanking\PolishGamesRanking\obj\Release\PolishGamesRanking.Migrations.Description.resources

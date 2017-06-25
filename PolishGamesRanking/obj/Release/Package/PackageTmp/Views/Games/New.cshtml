@@ -23,51 +23,74 @@
 </div>
 
 <h2>@Model.Title</h2>
-    @using (Html.BeginForm("Save", "Games", new { @class = "form-horizontal" }, FormMethod.Post, new { enctype = "multipart/form-data"}))
-    {
-        <div class="form-group">
-            <label for="Name">Nazwa</label>
-            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.Name)
+@using (Html.BeginForm("Save", "Games", new {@class = "form-horizontal"}, FormMethod.Post, new {enctype = "multipart/form-data"}))
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="Name">Nazwa</label>
+                    @Html.TextBoxFor(m => m.Name, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(m => m.Name)
+                </div>
+                <div class="form-group">
+                    <label for="GameGenre">Gatunek</label>
+                    @Html.DropDownListFor(m => m.GameGenreId, new SelectList(Model.GameGenres, "Id", "Name"), "Wybierz gatunek", new {@class = "form-control"})
+                    @Html.ValidationMessageFor(m => m.GameGenreId)
+                </div>
+                <div class="form-group">
+                    <label for="Developer">Deweloper</label>
+                    @Html.TextBoxFor(m => m.Developer, new {@class = "form-control"})
+                </div>
+                <div class="form-group">
+                    <label for="Publisher">Wydawca</label>
+                    @Html.TextBoxFor(m => m.Publisher, new {@class = "form-control"})
+                </div>
+                <div class="form-group">
+                    <label for="Engine">Silnik gr</label>
+                    @Html.TextBoxFor(m => m.Engine, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(m => m.Engine)
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="ReleaseDate">Data wydania</label>
+                    @Html.TextBoxFor(m => m.ReleaseDate, new {@type = "date", @class = "form-control"})
+                    @Html.ValidationMessageFor(m => m.ReleaseDate)
+                </div>
+                <div class="checkbox">
+                    <label>
+                        @Html.CheckBoxFor(m => m.DLC) Czy jest to dodatek do pełnej gry?
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="Description">Opis</label>
+                    @Html.TextAreaFor(m => m.Description, new {@class = "form-control", rows = "8"})
+                    @Html.ValidationMessageFor(m => m.Description)
+                </div>
+                <div class="form-group">
+                    <label for="Files">Okładka</label>
+                    <br/>
+                    <input type="file" id="image" name="image" multiple="">
+                    @Html.ValidationMessageFor(m => m.Files)
+                </div>
+                @Html.HiddenFor(m => m.Id)
+                @Html.AntiForgeryToken()
+                <br/>
+                <button type="submit" class="btn btn-primary" id='addGame'>Dodaj</button>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="GameGenre">Gatunek</label>
-            @Html.DropDownListFor(m => m.GameGenreId, new SelectList(Model.GameGenres, "Id", "Name"), "Wybierz gatunek", new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.GameGenreId)
-        </div>
-        <div class="form-group">
-            <label for="Developer">Deweloper</label>
-            @Html.TextBoxFor(m => m.Developer, new { @class = "form-control" })
-        </div>
-        <div class="form-group">
-            <label for="Publisher">Wydawca</label>
-            @Html.TextBoxFor(m => m.Publisher, new { @class = "form-control" })
-        </div>
-        <div class="form-group">
-            <label for="ReleaseDate">Data wydania</label>
-            @Html.TextBoxFor(m => m.ReleaseDate, new { @type = "date", @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.ReleaseDate)
-        </div>
-        <div class="form-group">
-            <label for="Files">Okładka</label>
-            <br />
-            <input type="file" id="image" name="image" multiple="">
-            @Html.ValidationMessageFor(m => m.Files)
-        </div>
-        @Html.HiddenFor(m => m.Id)
-        @Html.AntiForgeryToken()
-        <br />
-        <button type="submit" class="btn btn-primary" id='addGame'>Dodaj</button>
-    }
+    </div>
+}
 @section scripts
 {
     @Scripts.Render("~/bundles/jqueryval")
     <script>
-        $(document).ready(function() {
-            $("#addGame").submit(function() {
-                $.click(function() {
-                        toastr.success("Rentals successfully recorded.");
-                    });
+        $(document).ready(function () {
+            $("#addGame").submit(function () {
+                $.click(function () {
+                    toastr.success("Rentals successfully recorded.");
+                });
             });
         });
     </script>
