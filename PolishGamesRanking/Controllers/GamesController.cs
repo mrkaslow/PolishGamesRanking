@@ -89,9 +89,12 @@ namespace PolishGamesRanking.Controllers
                     Game = game,
                     UsersRate = userRate
                 };
-
-                return View("DetailsNoRating", viewModel);
+                if (User.IsInRole(RoleName.CanDeleteAndEditGames))
+                    return View("DetailsNoRating_Admin", viewModel);
+                    return View("DetailsNoRating", viewModel);
             }
+            if (User.IsInRole(RoleName.CanDeleteAndEditGames))
+            return View("Details_Admin", viewModel);
             return View("Details", viewModel);
         }
 

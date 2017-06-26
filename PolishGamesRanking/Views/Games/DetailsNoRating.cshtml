@@ -4,49 +4,67 @@
 @model PolishGamesRanking.ViewModels.DetailViewModel
 
 @{
-    ViewBag.Title = Model.Game.Name;
-    Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewBag.Title = Model.Game.Name;
+	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @{
-    var store = new UserStore<ApplicationUser>(new ApplicationDbContext());
-    var userManager = new UserManager<ApplicationUser>(store);
-    ApplicationUser user = userManager.FindByIdAsync(User.Identity.GetUserId()).Result;
+	var store = new UserStore<ApplicationUser>(new ApplicationDbContext());
+	var userManager = new UserManager<ApplicationUser>(store);
+	ApplicationUser user = userManager.FindByIdAsync(User.Identity.GetUserId()).Result;
 }
 
 <h2>@Model.Game.Name</h2>
 <h4 class="text-success">
-    Ocena: @{
-        var ratingString = Model.Game.Rating.ToString("0.00");
-    }@ratingString
+	Ocena: @{
+		var ratingString = Model.Game.Rating.ToString("0.00");
+	}@ratingString
 </h4>
 <h5 class="text-danger">Moja ocena: @Model.UsersRate</h5>
 <div class="container">
-    <div class="row">
-        <div class="col-sm-2">
-            @if (@Model.Game.Files.Any())
+	<div class="row">
+		<div class="col-sm-2">
+			@if (@Model.Game.Files.Any())
             {
-                <dd>
-                    @{
-                        var base64 = Convert.ToBase64String(Model.Game.Files.First().Content);
-                        var imgSrc = $"data:image/gif;base64,{base64}";
-                    }
+				<dd>
+					@{
+						var base64 = Convert.ToBase64String(Model.Game.Files.First().Content);
+						var imgSrc = $"data:image/gif;base64,{base64}";
+					}
 
-                    <img src="@imgSrc" width="200" class="img-responsive" />
-                </dd>
+					<img src="@imgSrc" width="200" class="img-responsive" />
+				</dd>
             }
-        </div>
-        <div class="col-sm-6">
-            <ul>
-                <li class="list-group-item">Gatunek:  @Model.Game.GameGenre.Name</li>
-                <li class="list-group-item">Data wydania:  @Model.Game.ReleaseDate.ToShortDateString()</li>
-                <li class="list-group-item">Deweloper:  @Model.Game.Developer</li>
-                <li class="list-group-item">Wydawca:  @Model.Game.Publisher</li>
-            </ul>
-        </div>
+		</div>
+		<div class="col-sm-6">
+			<ul class="nav nav-tabs">
+				<li class="active"><a href="#info" data-toggle="tab">Informacje ogólne</a></li>
 
-    </div>
-    <div class="row">
-        <br/>
-        @Html.ActionLink("Edytuj", "Edit", "Games", new { id = Model.Game.Id }, new { @class = "btn btn-primary" })
-    </div>
+				@if (Model.Game.Description.IsEmpty())
+				{
+					<li class="disabled"><a>Opis</a></li>
+				}
+				else
+				{
+					<li><a href="#opis" data-toggle="tab">Opis</a></li>
+				}
+			</ul>
+			<div id="myTabContent" class="tab-content">
+				<div class="tab-pane fade active in" id="info">
+					<li class="list-group-item">Gatunek: @Model.Game.GameGenre.Name</li>
+					<li class="list-group-item">Data wydania: @Model.Game.ReleaseDate.ToShortDateString()</li>
+					<li class="list-group-item">Deweloper: @Model.Game.Developer</li>
+					<li class="list-group-item">Wydawca: @Model.Game.Publisher</li>
+					<li class="list-group-item">Silnik gry: @Model.Game.Engine</li>
+					<br />
+				</div>
+				<div class="tab-pane fade" id="opis">
+					<div class="panel panel-default">
+						<div class="panel-body" style="min-height: 210px">
+							<p align="justify">@Model.Game.Description<p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

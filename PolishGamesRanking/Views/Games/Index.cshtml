@@ -3,7 +3,7 @@
 @using PolishGamesRanking.Models
 @model IEnumerable<PolishGamesRanking.Models.Game>
 @{
-    ViewBag.Title = "Games";
+    ViewBag.Title = "BazaGier";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -85,7 +85,7 @@
             }
     </tbody>
 </table>
-@Html.ActionLink("Dodaj grę", "New", "Games", null, new {@class="btn btn-primary"})
+@Html.ActionLink("Dodaj grę", "New", "Games", null, new {@class="btn btn-danger"})
 
 @section scripts
 {

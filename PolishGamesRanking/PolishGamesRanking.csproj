@@ -553,6 +553,8 @@
     <Content Include="Views\Games\New.cshtml" />
     <Content Include="Views\Games\NonAdminIndex.cshtml" />
     <Content Include="Views\Games\DetailsNoRating.cshtml" />
+    <Content Include="Views\Games\Details_Admin.cshtml" />
+    <Content Include="Views\Games\DetailsNoRating_Admin.cshtml" />
     <None Include="Views\User\Details.cshtml" />
     <None Include="Views\User\Index.cshtml" />
     <None Include="Views\Games\Index.cshtml" />
