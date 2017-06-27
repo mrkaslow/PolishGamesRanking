@@ -45,5 +45,11 @@ namespace PolishGamesRanking
         public virtual GameGenres GameGenres { get; set; }
 
         public virtual Rates Rates { get; set; }
+
+        public string Description { get; set; }
+
+        public bool DLC { get; set; }
+
+        public string Engine { get; set; }
     }
 }

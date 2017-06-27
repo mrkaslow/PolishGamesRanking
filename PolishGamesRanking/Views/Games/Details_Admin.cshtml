@@ -7,12 +7,15 @@
 }
 
 <h2>@Model.Game.Name</h2>
+<hr />
+<p class="text-muted">Data dodania: @Model.Game.DateAdded.Date.ToShortDateString()</p>
 <h4 class="text-success">
     Ocena: @{
         var ratingString = Model.Game.Rating.ToString("0.00");
     }@ratingString
 </h4>
 
+<p class="text-muted">Ilość głosów: @Model.Game.RatingsCount</p>
 
 <div class="container">
     <div class="row">

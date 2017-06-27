@@ -48,5 +48,11 @@ namespace PolishGamesRanking.DTOs
         public int AllRates { get; set; }
 
         public byte RatingId { get; set; }
+
+        public string Description { get; set; }
+
+        public bool DLC { get; set; }
+
+        public string Engine { get; set; }
     }
 }

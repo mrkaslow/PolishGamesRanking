@@ -184,6 +184,9 @@ namespace PolishGamesRanking.Controllers
                 gameInDb.GameGenreId = game.GameGenreId;
                 gameInDb.ReleaseDate = game.ReleaseDate;
                 gameInDb.Files = game.Files;
+                gameInDb.Description = game.Description;
+                gameInDb.Engine = game.Engine;
+                gameInDb.DLC = game.DLC;
             }
             _context.SaveChanges();
             TempData["Msg"] = "Gra została dodana do bazy.";
@@ -198,9 +201,6 @@ namespace PolishGamesRanking.Controllers
             var gameInDb = _context.Games.Single(c => c.Id == id);
             var userId = User.Identity.GetUserId();
             var userInDb = userManager.Users.Single(c => c.Id == userId);
-
-            
-            
 
             var rate = false;
             foreach (var rates in _context.RatedGames)

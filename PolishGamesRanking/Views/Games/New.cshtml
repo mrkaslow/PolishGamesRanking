@@ -1,10 +1,15 @@
 ﻿@using System.Activities.Expressions
+@using PolishGamesRanking.Models
 @model PolishGamesRanking.ViewModels.NewGameViewModel
 
 @{
     ViewBag.Title = Model.Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script> $(document).ready(function() { $("#datepicker").datepicker(); }); </script>
 
 <div class="panel panel-danger">
     <div class="panel-heading">
@@ -55,8 +60,8 @@
             <div class="col-sm-6">
                 <div class="form-group">
                     <label for="ReleaseDate">Data wydania</label>
-                    @Html.TextBoxFor(m => m.ReleaseDate, new {@type = "date", @class = "form-control"})
-                    @Html.ValidationMessageFor(m => m.ReleaseDate)
+                           @Html.TextBoxFor(m => m.ReleaseDate, "{0:yyyy-MM-dd}", new {@type = "date", @class = "form-control" })
+                           @Html.ValidationMessageFor(m => m.ReleaseDate)
                 </div>
                 <div class="checkbox">
                     <label>
@@ -72,7 +77,6 @@
                     <label for="Files">Okładka</label>
                     <br/>
                     <input type="file" id="image" name="image" multiple="">
-                    @Html.ValidationMessageFor(m => m.Files)
                 </div>
                 @Html.HiddenFor(m => m.Id)
                 @Html.AntiForgeryToken()

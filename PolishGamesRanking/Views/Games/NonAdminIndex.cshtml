@@ -42,6 +42,13 @@
                         <img src="@imgSrc" width="70" class="img-responsive"/>
                     </dd><br/>
                 }
+                @{
+                    var ratingRount = game.Rating.ToString("0.0");
+                    var percent = float.Parse(ratingRount) * 10;
+                }
+                <div class="progress">
+                    <div class="progress-bar progress-bar-warning" style="width: @percent%"></div>
+                </div>
             </td>
             <td>@Html.ActionLink(game.Name, "Details", "Games", new {id = game.Id}, null)</td>
             <td>@game.GameGenre.Name</td>

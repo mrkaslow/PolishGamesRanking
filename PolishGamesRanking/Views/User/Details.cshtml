@@ -11,7 +11,15 @@
     <div class="row">
         <div class="col-sm-10">
             <h2 style="color:#00bc8c; font-family: 'Sketch 3D'; font-size: 40px;">@Model.UserName</h2> <br />
-
+            @{
+                var store = new UserStore<ApplicationUser>(new ApplicationDbContext());
+                var userManager = new UserManager<ApplicationUser>(store);
+                ApplicationUser user = userManager.FindByIdAsync(Model.Id).Result;
+                var votedNumber = userManager.Users;
+                var orderedList = votedNumber.OrderByDescending(u => u.GamesRatedCount).ToList();
+                var userNumber = orderedList.FindIndex(u => u.Id == user.Id) + 1;
+            }
+            <p class="text-danger">Jesteś na @userNumber miejscu pod względem ocenionych gier.</p>
             <ul>
                 <li class="list-group-item">Nick: @Model.Nick</li>
                 <li class="list-group-item">Wiek: @Model.Age</li>
@@ -47,9 +55,8 @@
         var _context = new ApplicationDbContext();
         var cont = new ApplicationDbContext();
         var games = cont.Games;
-        var store = new UserStore<ApplicationUser>(new ApplicationDbContext());
-        var userManager = new UserManager<ApplicationUser>(store);
-        ApplicationUser user = userManager.FindByIdAsync(Model.Id).Result;
+
+
         var ratedGames = _context.RatedGames;
 
         foreach (var game in games)

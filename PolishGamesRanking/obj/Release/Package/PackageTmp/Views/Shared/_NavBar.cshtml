@@ -14,8 +14,14 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                
-                <li style="font-family: 'Sketch 3D'; font-size: 28px;">@Html.ActionLink("Baza gier", "Index", "Games")</li>
+                @{
+                    var _context = new ApplicationDbContext();
+                    var games = _context.Games;
+
+                    var link = Html.ActionLink("Baza Gier {0}", "Index", "Games").ToString();
+                    var url = string.Format(link, "<span class='badge' style='color:#404040; font-family: Lucida Console; font-size: 10px'>" + @games.Count().ToString() + "</span>");
+                }
+                <li style="font-family: 'Sketch 3D'; font-size: 28px;">@Html.Raw(url)</li>
                 @{
                     var store = new UserStore<ApplicationUser>(new ApplicationDbContext());
                     var userManager = new UserManager<ApplicationUser>(store);

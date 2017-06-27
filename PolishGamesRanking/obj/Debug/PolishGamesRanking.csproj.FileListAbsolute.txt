@@ -184,3 +184,5 @@ C:\Users\PC\Desktop\PolishGamesRanking-master\PolishGamesRanking\obj\Debug\Polis
 C:\Users\PC\Desktop\PolishGamesRanking-master\PolishGamesRanking\obj\Debug\PolishGamesRanking.csproj.GenerateResource.Cache
 C:\Users\PC\Desktop\PolishGamesRanking-master\PolishGamesRanking\obj\Debug\PolishGamesRanking.dll
 C:\Users\PC\Desktop\PolishGamesRanking-master\PolishGamesRanking\obj\Debug\PolishGamesRanking.pdb
+C:\Users\rslowinski\Desktop\TI-Projekt\PolishGamesRanking\PolishGamesRanking\obj\Debug\PolishGamesRanking.Migrations.Description2.resources
+C:\Users\rslowinski\Desktop\TI-Projekt\PolishGamesRanking\PolishGamesRanking\obj\Debug\PolishGamesRanking.Migrations.description3.resources
