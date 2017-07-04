@@ -22,6 +22,7 @@
                     var url = string.Format(link, "<span class='badge' style='color:#404040; font-family: Lucida Console; font-size: 10px'>" + @games.Count().ToString() + "</span>");
                 }
                 <li style="font-family: 'Sketch 3D'; font-size: 28px;">@Html.Raw(url)</li>
+
                 @{
                     var store = new UserStore<ApplicationUser>(new ApplicationDbContext());
                     var userManager = new UserManager<ApplicationUser>(store);
@@ -38,6 +39,7 @@
                         <li style="font-family: 'Sketch 3D'; font-size: 28px;">@Html.ActionLink("Moje konto", "Details", "User", new { id = user.Id }, null)</li>
                     }
                 }
+                <li style="font-family: 'Sketch 3D'; font-size: 28px;">@Html.ActionLink("O mnie", "Index", "AboutMe")</li>
             </ul>
             @Html.Partial("_LoginPartial")
             </div>

@@ -242,6 +242,7 @@
     <Compile Include="AspNetUserClaims.cs" />
     <Compile Include="AspNetUserLogins.cs" />
     <Compile Include="AspNetUsers.cs" />
+    <Compile Include="Controllers\AboutMeController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\API\GamesController.cs" />
     <Compile Include="Controllers\GamesController.cs" />
@@ -294,6 +295,7 @@
     <Compile Include="ViewModels\RandomGameViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\animation.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.min.css" />
     <Content Include="Content\DataTables\css\autoFill.dataTables.css" />
@@ -401,14 +403,40 @@
     <Content Include="Content\DataTables\images\sort_desc.png" />
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
+    <Content Include="Content\fontello-codes.css" />
+    <Content Include="Content\fontello-embedded.css" />
+    <Content Include="Content\fontello-ie7-codes.css" />
+    <Content Include="Content\fontello-ie7.css" />
+    <Content Include="Content\fontello.css" />
     <Content Include="Content\frontFont.css" />
     <Content Include="Content\bootstrap-darkly.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\Icons\gamepad1.png" />
+    <Content Include="Content\Images\Icons\Gamepad3.png" />
+    <Content Include="Content\Images\Icons\gamepad-icon.png" />
+    <Content Include="Content\Images\Icons\rockair.png" />
+    <Content Include="Content\Images\Icons\funnybunny.png" />
+    <Content Include="Content\Images\Icons\poog.png" />
+    <Content Include="Content\Images\Icons\docked.png" />
+    <Content Include="Content\Images\Icons\alone.png" />
+    <Content Include="Content\Images\Icons\lumbjump.jpg" />
+    <Content Include="Content\Images\Icons\tramini.png" />
+    <Content Include="Content\Images\portfolio_alone.jpg" />
+    <Content Include="Content\Images\portfolio_docked.jpg" />
+    <Content Include="Content\Images\portfolio_docked2.jpg" />
+    <Content Include="Content\Images\portfolio_funnybunny.jpg" />
+    <Content Include="Content\Images\portfolio_lumbjump.jpg" />
+    <Content Include="Content\Images\portfolio_poog.jpg" />
+    <Content Include="Content\Images\portfolio_rockair.jpg" />
+    <Content Include="Content\Images\portfolio_tramini.jpg" />
+    <Content Include="Content\Images\portfolio_tramini2.jpg" />
+    <Content Include="Content\portfolioStyle.css" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
     <Content Include="Content\unnamed.png" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontello.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\Sketch3D.svg" />
     <Content Include="Global.asax" />
@@ -431,6 +459,10 @@
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\fontello.eot" />
+    <Content Include="fonts\fontello.ttf" />
+    <Content Include="fonts\fontello.woff" />
+    <Content Include="fonts\fontello.woff2" />
     <None Include="Properties\PublishProfiles\Deployment.pubxml" />
     <None Include="Properties\PublishProfiles\GoDaddy.pubxml" />
     <None Include="Properties\PublishProfiles\home.pl web.pubxml" />
@@ -565,6 +597,7 @@
     <Content Include="Views\Games\DetailsNoRating.cshtml" />
     <Content Include="Views\Games\Details_Admin.cshtml" />
     <Content Include="Views\Games\DetailsNoRating_Admin.cshtml" />
+    <Content Include="Views\AboutMe\Index.cshtml" />
     <None Include="Views\User\Details.cshtml" />
     <None Include="Views\User\Index.cshtml" />
     <None Include="Views\Games\Index.cshtml" />

@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/Content/Images/Icons/gamepad1.png" />
     <title>@ViewBag.Title - Polish Games Ranking</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -10,15 +11,41 @@
 </head>
 <body>
     @Html.Partial("_NavBar")
-<div class="container body-content">
-    @RenderBody()
-    <hr/>
-    <footer>
-        <p>&copy; @DateTime.Now.Year - Polish Games Ranking by Karol Slowinski</p>
-    </footer>
-</div>
+    <div class="container body-content">
+        @RenderBody()
 
-@Scripts.Render("~/bundles/lib")
-@RenderSection("scripts", required: false)
+    </div>
+
+    @Scripts.Render("~/bundles/lib")
+    @RenderSection("scripts", required: false)
 </body>
+<footer class="myfooter">
+    <hr class="myhr" />
+    <div class="footer_address">
+        <p>
+            &copy; @DateTime.Now.Year - Polish Games Ranking by
+
+            <a href="@Url.Action("Index", "AboutMe")" title="O mnie">mrkaslow
+        <i class="icon-gamepad"></i>
+        </a>
+        </p>
+    </div>
+    <div class="footer_icons">
+        <a href="mailto:kaslowinski@gmail.com" title="Napisz do mnie">
+            <i class="icon-mail-alt"></i>
+        </a>
+        <a href="http://www.facebook.com/sharer.php?u=http://pgrankin.pl" target ="_blank" title="Udostępnij na Facebooku">
+            <i class="icon-share"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/kaslowinski" target ="_blank" title="LinkedIn">
+            <i class="icon-linkedin"></i>
+        </a>
+        <a href="https://github.com/mrkaslow" target ="_blank" title="Github">
+            <i class="icon-github-circled"></i>
+        </a>
+        <a href="https://www.facebook.com/kaslowinski" target ="_blank" title="Facebook">
+            <i class="icon-facebook-official"></i>
+        </a>
+    </div>
+</footer>
 </html>

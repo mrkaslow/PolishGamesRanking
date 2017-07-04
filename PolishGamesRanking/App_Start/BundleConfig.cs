@@ -30,6 +30,8 @@ namespace PolishGamesRanking
                       "~/Content/bootstrap-darkly.css",
                       "~/Content/datatables/css/datatables.bootstrap.css",
                       "~/Content/toastr.css",
+                      "~/Content/fontello.css",
+                      "~/Content/animation.css",
                       "~/Content/site.css"));
         }
     }
