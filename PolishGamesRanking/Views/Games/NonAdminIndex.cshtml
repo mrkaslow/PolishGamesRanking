@@ -8,6 +8,14 @@
 }
 
 <h2>Gry</h2>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <h5>
+            Szereguj wg: <button class="btn-link" id="sortbyrate" align="center">Najlepiej ocenianych</button>
+            <button class="btn-link" id="sortbyvotes" align="center">Najpopularniejszych</button>
+        </h5>
+    </div>
+</div>
 <table id="games" class="table table-bordered table-hover">
     <thead>
     <tr>
@@ -19,6 +27,7 @@
         <th>Deweloper</th>
         <th>Wydawca</th>
         <th>Moja ocena</th>
+        <th>Liczba głosów</th>
     </tr>
     </thead>
     <tbody>
@@ -81,16 +90,20 @@
             {
                 <td align="center">-</td>
             }
+            <td>@game.RatingsCount</td>
         </tr>
     }
     </tbody>
 </table>
 @Html.ActionLink("Dodaj grę", "New", "Games", null, new {@class="btn btn-danger"})
+<br/>
+<br/>
+<br/>
 
 @section scripts
 {
-    <script>
-        $(document).ready(function () {
+<script>
+        $(document).ready(function() {
             toastr.options = {
                 "closeButton": true,
                 "debug": false,
@@ -108,13 +121,12 @@
                 "showMethod": "fadeIn",
                 "hideMethod": "fadeOut"
             }
-            $(function(){
+            $(function() {
                 var msg = "@(TempData["Msg"] as string)";
                 if (msg !== "") {
                     toastr.success(msg);
                 }
             });
-
             var table = $("#games").DataTable({
                 //ajax: {
                 //    url: "api/games",
@@ -149,7 +161,18 @@
                 //        }
                 //    }
                 //],
-                "order": [[ 0, "desc" ]],
+                "columnDefs": [
+                    {
+                        "targets": [8],
+                        "visible": false,
+                        "searchable": false
+
+                    },
+                    { "orderSequence": ["desc"], "targets": [8] },
+                    { "orderSequence": ["desc"], "targets": [0] }
+                ],
+                "ordering": true,
+                "order": [[0, "desc"]],
                 "language": {
                     "decimal": "",
                     "emptyTable": "Brak danych w tabeli",
@@ -171,6 +194,9 @@
                     },
                 }
             });
+
+            table.order.listener($("#sortbyvotes"), 8, "desc");
+            table.order.listener($("#sortbyrate"), 0, "desc");
         })
-    </script>
+</script>
 }
